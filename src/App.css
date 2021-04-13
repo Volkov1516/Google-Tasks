@@ -2,4 +2,58 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
+
+ul, li {
+    list-style: none;
+}
+
+.container {
+    margin: 20px auto;
+    width: 500px;
+}
+
+.list-name {
+    color: darkslategrey;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+}
+
+.input {
+    width: 300px;
+    height: 30px;
+    margin-left: 55px;
+    margin-right: 5px;
+    border: 2px solid darkgray;
+    border-radius: 8px;
+    outline: none;
+}
+
+.add-task-btn {
+    width: 80px;
+    height: 30px;
+    display: 'inline-block';
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 8px;
+    background-color: lightgray;
+}
+
+.show-completed-btn {
+    width: 80px;
+    height: 30px;
+    margin: 20px 0 20px 210px;
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 8px;
+    background-color: lightgray;
+}
+
+.list {
+    width: 380px;
+    margin: 0 auto;
+}
+
