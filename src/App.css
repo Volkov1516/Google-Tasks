@@ -40,6 +40,7 @@ ul, li {
     border: 1px solid darkgray;
     border-radius: 8px;
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .show-completed-btn {
