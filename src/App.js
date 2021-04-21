@@ -1,5 +1,4 @@
 import { useState } from 'react' 
-import { Redirect, Route } from 'react-router-dom'
 import './App.css'
 import DB from './assets/db.json'
 
