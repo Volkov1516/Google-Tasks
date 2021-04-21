@@ -1,6 +1,6 @@
 import { useState } from 'react' 
-import './App.css'
 import DB from './assets/db.json'
+import './App.css'
 
 const App = () => {
     const [inputValue, setInputValue] = useState('')
@@ -14,9 +14,12 @@ const App = () => {
 
     return (
         <div className='container'>
-            <h1 className='list-name' >{DB.name}</h1>
+            {/**Часть 1 */}
+            <button className='list-name' >{DB.name}</button>
+            {/**Часть 2 */}
             <input className='input' value={inputValue} onChange={e => setInputValue(e.target.value)} />
             <button className='add-task-btn' onClick={addComment} >Add a task</button>
+            {/**Часть 3 */}
             <div className='list'>
                 <ul>
                     {comments.map(comment => 
@@ -27,6 +30,7 @@ const App = () => {
                     )}
                 </ul>
             </div>
+            {/**Часть 4 */}
             <button className='show-completed-btn'>Completed</button>
         </div>
     )
