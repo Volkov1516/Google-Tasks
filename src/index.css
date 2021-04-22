@@ -9,17 +9,28 @@ ul, li {
     list-style: none;
 }
 
-.container {
-    margin: 0px auto;
-    width: 100%;
+button {
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 8px;
+    background-color: lightgray;
+    cursor: pointer;
 }
 
-.list-name {
+.container {
+    margin: 0 auto;
+    width: 500px;
+    height: 100vh;
+    background-color: cornflowerblue;
+}
+
+.list-name-btn {
+    margin: 0px auto;
     color: darkslategrey;
     font-size: 1.5em;
     font-weight: 700;
     text-align: center;
-    padding: 10px 20px 10px 20px;
+    display: block;
 }
 
 .input {
@@ -36,21 +47,12 @@ ul, li {
     width: 80px;
     height: 30px;
     display: 'inline-block';
-    outline: none;
-    border: 1px solid darkgray;
-    border-radius: 8px;
-    background-color: lightgray;
-    cursor: pointer;
 }
 
 .show-completed-btn {
     width: 80px;
     height: 30px;
     margin: 20px 0 20px 210px;
-    outline: none;
-    border: 1px solid darkgray;
-    border-radius: 8px;
-    background-color: lightgray;
 }
 
 .list {
