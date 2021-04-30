@@ -2,7 +2,7 @@ import {React, useState} from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
-import DB from './assets/db.json'
+import DB from './db.json'
 import './index.css'
 
 const App = () => {
@@ -24,15 +24,14 @@ const App = () => {
     return (
         <div className='container'>
             {/**Часть 1 */}
-            <span style={{display: `${isVisible}`}}>mymail@mail.com</span>
-
-            <button className='list-name-btn'  onClick={showMenu}>{DB.name}</button>
-
-            <ul className='list-name-menu' style={{display: `${isVisible}`}}>
+            <button className='menu-btn'  onClick={showMenu} >{DB.name}</button>
+            <ul className='menu' style={{display: `${isVisible}`}}>
                 <li>Напоминания</li>
                 <li>Проекты</li>
                 <li>Книги</li>
-                <li>Создать новый список</li>
+                <li className='menu__create-new' >Создать новый список</li>
+                <li className='menu__user' >mymail@mail.com</li>
+                <li className='menu__info' >Инфо</li>
             </ul>
             {/**Часть 2 */}
             <input className='input' value={inputValue} onChange={e => setInputValue(e.target.value)} />
