@@ -1,11 +1,12 @@
 import {React, useState} from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, NavLink } from 'react-router-dom'
+import Login from './components/Login/Login'
 
 import DB from './db.json'
 import './index.css'
 
-const App = () => {
+const App = (props) => {
     const [comments, setComment] = useState( DB.lists )
 
     const [inputValue, setInputValue] = useState('')
@@ -20,8 +21,11 @@ const App = () => {
         setIsVisible('block')
     }
 
-    return (
-        <div className='container'>
+    const isLoggedIn = props.isLoggedIn
+
+    if(isLoggedIn){
+        return (
+            <div className='container'>
             <button className='menu-btn'  onClick={showMenu} >{DB.name}</button>
             <ul className='menu' style={{display: `${isVisible}`}}>
                 <li>Напоминания</li>
@@ -45,7 +49,11 @@ const App = () => {
             </div>
             <button className='show-completed-btn'>Completed</button>
         </div>
+        )
+    }
+    return (
+        <Login />
     )
 }
 
-ReactDOM.render(<BrowserRouter> <App /> </BrowserRouter>, document.querySelector('#root'))
+ReactDOM.render(<BrowserRouter> <App isLoggedIn={false} /> </BrowserRouter>, document.querySelector('#root'))

@@ -1,22 +1,71 @@
+import { Route, Redirect, NavLink } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
-import css from './Login.module.jsx'
-
-const Login = () => {
-    const {register, handleSubmit, erros} = useForm()
-    const onSubmit = (data) => {
-        console.log(data)
-    }
-
+const Registration = (props) => {
+    const { register, handleSubmit } = useForm()
+    const onSubmit = data => console.log(data)
     return (
+      <div>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
             <label>Email</label>
-            <input type="text" name="email" ref={register} />
+            <input style={{display: 'block'}} type='email' {...register('email')}/>
+          </div>
+  
+          <div>
             <label>Password</label>
-            <input type="password" name="password" ref={register} />
-            <button type="submit" >Login</button>
+            <input style={{display: 'block'}} type='password' {...register('password')}/>
+          </div>
+  
+          <div>
+            <label>Confirm password</label>
+            <input style={{display: 'block'}} type='password' {...register('password')}/>
+          </div>
+  
+          <button style={{display: 'block'}} type="submit" >Зарегистрироваться</button>
+          <label>Или</label>
+          <NavLink to='/enter'>
+            <button style={{display: 'block'}} >Войти</button>
+          </NavLink>
         </form>
+      </div>
     )
-}
+  }
+  const Enter = (props) => {
+    const { register, handleSubmit } = useForm()
+    const onSubmit = data => console.log(data)
+    return (
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <label>Email</label>
+            <input style={{display: 'block'}} type='email' {...register('email')}/>
+          </div>
+  
+          <div>
+            <label>Password</label>
+            <input style={{display: 'block'}} type='password' {...register('password')}/>
+          </div>
+  
+          <button style={{display: 'block'}} type="submit" >Войти</button>
+          <label>Или</label>
+          <NavLink to='/registration'>
+            <button style={{display: 'block'}} >Зарегистрироваться</button>
+          </NavLink>
+        </form>
+      </div>
+    )
+  }
+
+  const Login = () => {
+    return (
+      <> 
+        <Redirect from='/' to='enter' />
+  
+        <Route path='/enter' component={Enter} />
+        <Route path='/registration' component={Registration} />
+      </>
+    )
+  }
 
 export default Login
