@@ -15,11 +15,12 @@ const App = (props) => {
         setComment([newComment, ...comments])
         setInputValue('')   
     }
-
-    const [isVisible, setIsVisible] = useState('none')
+    
+    const [isVisible, setIsVisible] = useState(false)
     const showMenu = () => {
-        setIsVisible('block')
+            setIsVisible(!isVisible)
     }
+
 
     const isLoggedIn = props.isLoggedIn
 
@@ -27,7 +28,7 @@ const App = (props) => {
         return (
             <div className='container'>
             <button className='menu-btn'  onClick={showMenu} >{DB.name}</button>
-            <ul className='menu' style={{display: `${isVisible}`}}>
+            <ul className='menu' style={isVisible ? {'display': 'block'} : {'display': 'none'}}>
                 <li>Напоминания</li>
                 <li>Проекты</li>
                 <li>Книги</li>
@@ -56,4 +57,4 @@ const App = (props) => {
     )
 }
 
-ReactDOM.render(<BrowserRouter> <App isLoggedIn={false} /> </BrowserRouter>, document.querySelector('#root'))
+ReactDOM.render(<BrowserRouter> <App isLoggedIn={true} /> </BrowserRouter>, document.querySelector('#root'))
