@@ -12,8 +12,8 @@ const App = (props) => {
     const [inputValue, setInputValue] = useState('')
     const addComment = () => {
         const newComment = {task: inputValue}
-        setComment([newComment, ...comments])
-        setInputValue('')   
+        setComment([...comments, newComment])
+        setInputValue('') 
     }
     
     const [isVisible, setIsVisible] = useState(false)
@@ -21,6 +21,18 @@ const App = (props) => {
             setIsVisible(!isVisible)
     }
 
+    /**
+     * Удаление задачи:
+     * 1. Узнать id текущего элемента
+     * 2. Удалить задачу по id
+     */
+
+    const removeItem = () => {
+        comments.splice(0, 1)
+    }
+    console.log(comments)
+    
+    
 
     const isLoggedIn = props.isLoggedIn
 
@@ -43,7 +55,7 @@ const App = (props) => {
                     {comments.map(comment => 
                         <li>
                             {comment.task}
-                            <button>complete</button>
+                            <button onClick={removeItem}>complete</button>
                         </li>
                     )}
                 </ul>
