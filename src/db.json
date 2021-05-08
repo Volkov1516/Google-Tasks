@@ -1,5 +1,8 @@
 {
     "name": "TASKS",
-    "lists": [],
+    "lists": [
+        {"id": 0, "task": "Купить хлеб"},
+        {"id": 1, "task": "Купить молоко"}
+    ],
     "completed": []
 }
