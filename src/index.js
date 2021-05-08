@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import { React, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
@@ -8,10 +8,9 @@ import Menu from './components/Menu/Menu'
 
 const App = (props) => {
     const isLoggedIn = props.isLoggedIn
-    if(isLoggedIn){
+    if (isLoggedIn) {
         return (
             <div className='container'>
-                <Menu />
                 <List />
             </div>
         )
@@ -21,4 +20,9 @@ const App = (props) => {
     )
 }
 
-ReactDOM.render(<BrowserRouter><App isLoggedIn={true}/></BrowserRouter>, document.querySelector('#root'))
+ReactDOM.render(<BrowserRouter><App isLoggedIn={true} /></BrowserRouter>, document.querySelector('#root'))
+
+/**
+ * Компонента List:
+ * 1. Удаление и Редактирование Задачи
+ */
