@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import DB from '../../db.json'
-
+/**
+ * Довести до идела! 
+ * 1. Input и Add: Верстка + функционал 
+ * 2. TaskItem: Верстка + функционал(удаление и редактирование)
+ * 3. JSON server 
+ */
 const List = () => {
     const [tasks, setTask] = useState( DB.tasks )
-    console.log(tasks)
 
     const [inputValue, setInputValue] = useState('')
 
@@ -23,7 +27,6 @@ const List = () => {
                     {tasks.map((i, index) =>
                         <li key={i.id}>
                             <button onClick={() => tasks.splice(index, 1)} >delete</button>
-                            {console.log(i.id)}
                             <input type="text"  value={i.task} />
                         </li>
                     )}
@@ -34,3 +37,4 @@ const List = () => {
 }
 
 export default List
+

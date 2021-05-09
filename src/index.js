@@ -21,8 +21,3 @@ const App = (props) => {
 }
 
 ReactDOM.render(<BrowserRouter><App isLoggedIn={true} /></BrowserRouter>, document.querySelector('#root'))
-
-/**
- * Компонента List:
- * 1. Удаление и Редактирование Задачи
- */
