@@ -19,9 +19,13 @@ button {
 
 .container {
     margin: 0 auto;
-    padding-top: 40px;
     width: 500px;
     height: 100vh;
+    background-color:lightsalmon;
+}
+
+.container__menu {
+    margin-bottom: 20px;
 }
 
 .menu-btn {
@@ -71,4 +75,3 @@ button {
     width: 380px;
     height: 300px;
 }
-

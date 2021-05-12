@@ -1,10 +1,11 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import Login from './components/Login/Login'
-import List from './components/List/List'
-import Menu from './components/Menu/Menu'
+
+import Login from './components/Login'
+import List from './components/List'
+import Menu from './components/Menu'
 
 const App = (props) => {
     const isLoggedIn = props.isLoggedIn

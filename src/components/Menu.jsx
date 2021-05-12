@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DB from '../../db.json'
+import DB from '../db.json'
 
 const Menu = () => {
     const [isVisible, setIsVisible] = useState(false)
@@ -8,7 +8,7 @@ const Menu = () => {
     }
 
     return (
-        <div>
+        <div className='container__menu'>
             <button className='menu-btn' onClick={showMenu} >{DB.name}</button>
             <ul className='menu' style={isVisible ? { 'display': 'block' } : { 'display': 'none' }}>
                 <li>Напоминания</li>
