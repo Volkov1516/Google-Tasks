@@ -9,19 +9,10 @@ ul, li {
     list-style: none;
 }
 
-button {
-    outline: none;
-    border: 1px solid darkgray;
-    border-radius: 8px;
-    background-color: lightgray;
-    cursor: pointer;
-}
-
 .container {
     margin: 0 auto;
     width: 500px;
     height: 100vh;
-    background-color:lightsalmon;
 }
 
 .container__menu {
@@ -48,30 +39,73 @@ button {
     text-align: center;
 }
 
-.input {
+.container__list {
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+}
+
+.list__control-panel {
+    margin: 0 auto;
+    width: 400px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.control-panel__input {
     width: 300px;
     height: 30px;
-    margin-left: 55px;
-    margin-right: 5px;
-    border: 2px solid darkgray;
-    border-radius: 8px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 10px;
     outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
 }
 
-.add-task-btn {
+.control-panel__add-task-btn {
     width: 80px;
-    height: 30px;
+    height: 28px;
     display: 'inline-block';
+    float: right;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color:cornflowerblue;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
 }
 
-.show-completed-btn {
+.list__lists-area {
     margin: 0 auto;
-    width: 80px;
-    height: 30px;
-}
-
-.list {
-    margin: 0 auto;
-    width: 380px;
+    width: 400px;
     height: 300px;
+}
+
+.lists-area__input {
+    width: 350px;
+    height: 20px;
+    margin: 5px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
+
+.lists-area__remove-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 30px;
+    background-color:crimson;
+    cursor: pointer;
+    outline: none;
+    border: none;
 }
