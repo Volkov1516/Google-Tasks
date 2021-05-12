@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DB from '../db.json'
 
 const List = () => {
     const [tasks, setTask] = useState(DB.tasks)
     const [inputValue, setInputValue] = useState('')
+
     const addTask = () => {
         const id = tasks.length
         const newTask = { id, task: inputValue }
         setTask([newTask, ...tasks])
         setInputValue('')
     }
+
+    const removeTask = (index) => {
+        tasks.splice(index, 1)
+    } 
 
     return (
         <div className="container__list">
@@ -21,7 +26,7 @@ const List = () => {
                 <ul>
                     {tasks.map((i, index) =>
                         <li key={i.id}>
-                            <button className='lists-area__remove-btn' onClick={() => tasks.splice(index, 1)} ></button>
+                            <button className='lists-area__remove-btn' onClick={removeTask(index)} ></button>
                             <input className='lists-area__input' type="text" value={i.task} />
                         </li>
                     )}
