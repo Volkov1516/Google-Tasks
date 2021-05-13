@@ -27,7 +27,7 @@ const List = () => {
             </div>
             <div className='list__lists-area'>
                 <ul>
-                    {tasks.map((i, index) =>
+                    {tasks.map((i) =>
                         <li key={i.id}>
                             <button className='lists-area__remove-btn' onClick={() => deleteTask(i.id)} ></button>
                             <input className='lists-area__input' type="text" value={i.task} />
