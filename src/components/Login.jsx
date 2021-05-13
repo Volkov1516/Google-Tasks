@@ -5,7 +5,7 @@ const Registration = (props) => {
     const { register, handleSubmit } = useForm()
     const onSubmit = data => console.log(data)
     return (
-      <div>
+      <div className='container__login'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label>Email</label>
