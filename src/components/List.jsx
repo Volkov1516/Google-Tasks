@@ -14,7 +14,14 @@ const List = () => {
         setInputValue('')
     }
 
-    const deleteTask = (id) => {
+    const editTask = (id) => {
+        alert(id)
+        console.log(tasks)
+
+        const updatedTasks = [...tasks].map((task) => {if(task.id === id) console.log('Finaly!')})  
+    }
+
+    const removeTask = (id) => {
         const updatedTasks = [...tasks].filter((task) => task.id !== id)
         setTasks(updatedTasks)
     } 
@@ -29,8 +36,12 @@ const List = () => {
                 <ul>
                     {tasks.map((i) =>
                         <li key={i.id}>
-                            <button className='lists-area__remove-btn' onClick={() => deleteTask(i.id)} ></button>
-                            <input className='lists-area__input' type="text" value={i.task} />
+                            <button className='lists-area__complete-btn'></button>
+
+                            <span className='lists-area__input'>{i.task}</span>
+
+                            <button className='lists-area__edit-btn' onClick={() => editTask(i.id)}></button>
+                            <button className='lists-area__remove-btn' onClick={() => removeTask(i.id)} ></button>
                         </li>
                     )}
                 </ul>

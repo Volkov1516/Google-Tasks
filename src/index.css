@@ -89,7 +89,7 @@ ul, li {
 }
 
 .lists-area__input {
-    width: 350px;
+    width: 340px;
     height: 20px;
     margin: 5px;
     border: none;
@@ -98,6 +98,27 @@ ul, li {
     font-size: 16px;
     font-weight: 600;
     color: black;
+}
+
+.lists-area__complete-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 30px;
+    background-color:mediumseagreen;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.lists-area__edit-btn {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    border-radius: 30px;
+    background-color:blueviolet;
+    cursor: pointer;
+    outline: none;
+    border: none;
 }
 
 .lists-area__remove-btn {
