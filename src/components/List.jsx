@@ -3,16 +3,17 @@ import DB from '../db.json'
 
 /**
  * Исправить проблему с редактированием!!!
+ * Редактировать код! Разбить на компоненты
  */
 
 const List = () => {
-    const [tasks, setTasks] = useState(DB.tasks)
-    const [completed, setCompleted] = useState(DB.completed)
+    const [tasks, setTasks] = useState(DB.list.tasks)
+    const [completed, setCompleted] = useState(DB.list.completed)
     const [inputValue, setInputValue] = useState('')
     const [taskEditing, setTaskEditing] = useState(null)
     const [editInputValue, setEditInputValue] = useState('')
     const [isVisible, setIsVIsible] = useState(false)
-
+    
     const addTask = () => {
         const newTask = { 
             id: new Date().getTime(), 

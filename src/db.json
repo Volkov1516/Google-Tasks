@@ -1,5 +1,8 @@
 {
-    "name": "My Tasks",
-    "tasks": [],
-    "completed": []
+    "list": {
+        "id": "1",
+        "name": "My Tasks",
+        "tasks": [],
+        "completed": []
+    }
 }
