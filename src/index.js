@@ -12,6 +12,7 @@ const App = (props) => {
     if (isLoggedIn) {
         return (
             <div className='container'>
+                <Menu />    
                 <List />
             </div>
         )

@@ -99,3 +99,8 @@ ul, li {
     font-weight: 600;
     color: black;
 }
+
+.list__completed {
+    width: 500px;
+    height: 400px;
+}
