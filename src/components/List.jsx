@@ -46,13 +46,10 @@ const List = () => {
                 <ul>
                     {tasks.map((i) =>
                         <li key={i.id}>
-                            <button className='lists-area__complete-btn' onClick={() => completeTask(i.id)} ></button>
+                            <button className='lists-area__complete-btn' onClick={() => completeTask(i.id)} >Complete</button>
                             {taskEditing === i.id ? (<input type="text" value={editInputValue} onChange={e => setEditInputValue(e.target.value)} />) : (<span className='lists-area__input'>{i.task}</span>)}         
-                            {taskEditing === i.id ? (<button onClick={() => editTask(i.id)} >submit edit</button>) : (<button className='lists-area__edit-btn' onClick={() => setTaskEditing(i.id)}></button>)}
-                            
-                            <button className='lists-area__remove-btn' onClick={() => removeTask(i.id)} ></button>
-
-                            
+                            {taskEditing === i.id ? (<button onClick={() => editTask(i.id)} >Submit edit</button>) : (<button className='lists-area__edit-btn' onClick={() => setTaskEditing(i.id)}>Edit</button>)}
+                            <button className='lists-area__remove-btn' onClick={() => removeTask(i.id)} >Remove</button>  
                         </li>
                     )}
                 </ul>
