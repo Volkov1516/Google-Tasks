@@ -4,6 +4,8 @@ import DB from '../db.json'
 const List = () => {
     const [tasks, setTasks] = useState(DB.tasks)
     const [inputValue, setInputValue] = useState('')
+    const [taskEditing, setTaskEditing] = useState(null)
+    const [editInputValue, setEditInputValue] = useState('')
 
     const addTask = () => {
         const newTask = { 
@@ -14,11 +16,19 @@ const List = () => {
         setInputValue('')
     }
 
-    const editTask = (id) => {
-        alert(id)
-        console.log(tasks)
+    const completeTask = (id) => {
+        const updatedTask = [...tasks].map((task) => {if(task.id === id) alert('Complete by Id:' + id)})
+    }
 
-        const updatedTasks = [...tasks].map((task) => {if(task.id === id) console.log('Finaly!')})  
+    const editTask = (id) => {  
+        const updatedTasks = [...tasks].map((todo) => {if(todo.id === id){
+            todo.task = editInputValue
+            }  
+            return todo    
+        })
+        setTasks(updatedTasks)
+        setTaskEditing(null)
+        setEditInputValue('')
     }
 
     const removeTask = (id) => {
@@ -36,12 +46,13 @@ const List = () => {
                 <ul>
                     {tasks.map((i) =>
                         <li key={i.id}>
-                            <button className='lists-area__complete-btn'></button>
-
-                            <span className='lists-area__input'>{i.task}</span>
-
-                            <button className='lists-area__edit-btn' onClick={() => editTask(i.id)}></button>
+                            <button className='lists-area__complete-btn' onClick={() => completeTask(i.id)} ></button>
+                            {taskEditing === i.id ? (<input type="text" value={editInputValue} onChange={e => setEditInputValue(e.target.value)} />) : (<span className='lists-area__input'>{i.task}</span>)}         
+                            {taskEditing === i.id ? (<button onClick={() => editTask(i.id)} >submit edit</button>) : (<button className='lists-area__edit-btn' onClick={() => setTaskEditing(i.id)}></button>)}
+                            
                             <button className='lists-area__remove-btn' onClick={() => removeTask(i.id)} ></button>
+
+                            
                         </li>
                     )}
                 </ul>
