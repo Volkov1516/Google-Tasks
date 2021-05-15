@@ -6,25 +6,40 @@
         "completed": []
     },
 
-
-
-
-    "listArr": [
+    "menu": [
         {
             "id": "1",
-            "listNameVal": "Name of the List1",
-            "taskArr": [
+            "name": "A",
+            "tasks": [
                 {
-                    "taskNameVal": "Name of the Task1"
+                    "id": "21321",
+                    "task": "Text from A"
+                },
+                {
+                    "id": "21321",
+                    "task": "Text from A"
+                },
+                {
+                    "id": "213321",
+                    "task": "Text from A"
                 }
             ]
         },
         {
             "id": "2",
-            "listNameVal": "Name of the List2",
-            "taskArr": [
+            "name": "B",
+            "tasks": [
                 {
-                    "taskNameVal": "Name of the Task2"
+                    "id": "2132221",
+                    "task": "Text from B"
+                },
+                {
+                    "id": "2122321",
+                    "task": "Text from B"
+                },
+                {
+                    "id": "21321122121",
+                    "task": "Text from B"
                 }
             ]
         }
