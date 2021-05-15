@@ -4,5 +4,30 @@
         "name": "My Tasks",
         "tasks": [],
         "completed": []
-    }
+    },
+
+
+
+
+    "listArr": [
+        {
+            "id": "1",
+            "listNameVal": "Name of the List1",
+            "taskArr": [
+                {
+                    "taskNameVal": "Name of the Task1"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "listNameVal": "Name of the List2",
+            "taskArr": [
+                {
+                    "taskNameVal": "Name of the Task2"
+                }
+            ]
+        }
+    ]
 }
+

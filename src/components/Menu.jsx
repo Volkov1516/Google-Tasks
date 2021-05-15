@@ -4,10 +4,11 @@ import DB from '../db.json'
  * Редактировать JSON
  * Отобразить список листов в меню
  * В зависимости от выбранного листа, рендерить соответствующий список задач
+ * По нажатию на кнопку конкретного элемента(имени списка) запускается функция 
+ * Если id из события клика равен одному из id имени списка, то нужно рендерить массив списков этого объекта
  */
 const Menu = () => {
     const [lists, setLists] = useState(DB.list)
-    console.log(lists)
     const [isVisible, setIsVisible] = useState(false)
     const showMenu = () => {
         setIsVisible(!isVisible)
