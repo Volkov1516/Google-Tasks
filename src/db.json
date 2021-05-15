@@ -4,45 +4,6 @@
         "name": "My Tasks",
         "tasks": [],
         "completed": []
-    },
-
-    "menu": [
-        {
-            "id": "1",
-            "name": "A",
-            "tasks": [
-                {
-                    "id": "21321",
-                    "task": "Text from A"
-                },
-                {
-                    "id": "21321",
-                    "task": "Text from A"
-                },
-                {
-                    "id": "213321",
-                    "task": "Text from A"
-                }
-            ]
-        },
-        {
-            "id": "2",
-            "name": "B",
-            "tasks": [
-                {
-                    "id": "2132221",
-                    "task": "Text from B"
-                },
-                {
-                    "id": "2122321",
-                    "task": "Text from B"
-                },
-                {
-                    "id": "21321122121",
-                    "task": "Text from B"
-                }
-            ]
-        }
-    ]
+    }
 }
 
