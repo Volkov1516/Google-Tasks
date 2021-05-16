@@ -4,6 +4,7 @@
         "name": "My Tasks",
         "tasks": [],
         "completed": []
-    }
+    },
+    "newList": []
 }
 
