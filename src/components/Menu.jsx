@@ -1,49 +1,20 @@
-import { useState, useEffect } from 'react'
-import DB from '../db.json'
+import { useState } from 'react'
 /**
- * Создание нового списка
- * По клику на кнопку запускается функция
- * 
+ * ЗАДАЧА: Создать новый список
  */
-const Menu = () => {
-    const [newList, setNewList] = useState(DB.newList)
-
+const Menu = (props) => {
     const [isVisible, setIsVisible] = useState(false)
     const showMenu = () => {
         setIsVisible(!isVisible)
     }
 
-    {/**
-    ПРОБЛЕМА: При первом клике массив пустой! Но при втором уже заполняется...
-    */}
-    const createNweList = () => {
-        const list = {
-            id: 1,
-            name: "My Tasks",
-            tasks: [
-                {
-                    id: 1,
-                    task: "Some task"
-                }
-            ],
-            completed: [
-                {
-                    id: 1,
-                    task: "Completed task"
-                }
-            ]
-        }
-        setNewList([...newList, list])
-        console.log(newList)
-    }
-
     return (
         <div className='container__menu'>
-            <button className='menu-btn' onClick={showMenu} >{DB.list.name}</button>
+            <button className='menu-btn' onClick={showMenu} >{props.name}</button>
             <ul className='menu' style={isVisible ? { 'display': 'block' } : { 'display': 'none' }}>
                 <li>Книги</li>
 
-                <button className='menu__create-new' onClick={createNweList} >Создать новый список</button>
+                <button className='menu__create-new'  >Создать новый список</button>
 
                 <li className='menu__user' >mymail@mail.com</li>
                 <li className='menu__info' >Инфо</li>

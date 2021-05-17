@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import DB from '../db.json'
-
 /**
  * Исправить проблему с редактированием!!!
  * Редактировать код! Разбить на компоненты
  */
-
-const List = () => {
-    const [tasks, setTasks] = useState(DB.list.tasks)
-    const [completed, setCompleted] = useState(DB.list.completed)
+const List = (props) => {
+    const [tasks, setTasks] = useState(props.tasks)
+    const [completed, setCompleted] = useState(props.completed)
     const [inputValue, setInputValue] = useState('')
     const [taskEditing, setTaskEditing] = useState(null)
     const [editInputValue, setEditInputValue] = useState('')

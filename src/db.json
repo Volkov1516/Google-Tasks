@@ -1,10 +1,9 @@
 {
     "list": {
         "id": "1",
-        "name": "My Tasks",
+        "name": "List Name",
         "tasks": [],
         "completed": []
-    },
-    "newList": []
+    }
 }
 
