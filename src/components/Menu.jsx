@@ -1,7 +1,5 @@
 import { useState } from 'react'
-/**
- * ЗАДАЧА: Создать новый список
- */
+
 const Menu = (props) => {
     const [isVisible, setIsVisible] = useState(false)
     const showMenu = () => {

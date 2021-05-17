@@ -7,11 +7,7 @@ import DB from './db.json'
 import Login from './components/Login'
 import List from './components/List'
 import Menu from './components/Menu'
-/**
- * Реализовать функцию множества списков(добавление, редактирование, удаление, отображение)
- * Реализовать функцию регистрации и входа/выхода
- * Реализовать JSON-server и AJAX-запросы
- */
+
 const App = (props) => {
     const [database, setDatabase] = useState(DB)
     console.log(database)

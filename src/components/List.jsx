@@ -1,8 +1,5 @@
 import { useState } from 'react'
-/**
- * Исправить проблему с редактированием!!!
- * Редактировать код! Разбить на компоненты
- */
+
 const List = (props) => {
     const [tasks, setTasks] = useState(props.tasks)
     const [completed, setCompleted] = useState(props.completed)
