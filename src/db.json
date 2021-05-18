@@ -4,6 +4,22 @@
         "name": "List Name",
         "tasks": [],
         "completed": []
-    }
+    },
+    "Lists": [
+        {
+            "id": 1,
+            "name": "Цели",
+            "tasks": [
+                {"task": 1}
+            ],
+            "completed": []
+        },
+        {
+            "id": 2,
+            "name": "Книги",
+            "tasks": [],
+            "completed": []
+        }
+    ]
 }
 
