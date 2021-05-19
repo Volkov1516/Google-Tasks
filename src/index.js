@@ -7,10 +7,7 @@ import DB from './db.json'
 import Login from './components/Login'
 import List from './components/List'
 import Menu from './components/Menu'
-/**
- * ЗАДАЧА: Выбор списка задач через меню
- * Отрендерить названия списков
- */
+
 const App = (props) => {
     const [database, setDatabase] = useState(DB)
 
@@ -19,8 +16,7 @@ const App = (props) => {
     if (isLoggedIn) {
         return (
             <div className='container'>
-                {/**Передаем массив списков в Меню */}
-                <Menu name={database.list.name} Lists={database.Lists}/>    
+                <Menu name={database.list.name} />    
                 <List tasks={database.list.tasks} completed={database.list.completed}/>
             </div>
         )
