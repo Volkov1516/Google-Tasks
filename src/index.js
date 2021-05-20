@@ -10,15 +10,10 @@ import Menu from './components/Menu'
 import A from './components/A'
 import B from './components/B'
 
-/**
- * Отрендерить имена списков в Меню
- */
-
 const App = (props) => {
     const isLoggedIn = props.isLoggedIn
     const [database, setDatabase] = useState(DB)
 
-    
     const [newList, setNewList] = useState(null)
     const changeList = (i) => {
         setNewList([i])
@@ -35,7 +30,7 @@ const App = (props) => {
                 <List tasks={database.list.tasks} completed={database.list.completed}/>
             
             <A list={database.newList} changeList={changeList}/>
-            <B newList={newList}/>
+            <B newList={newList} />
 
             </div>
         )
