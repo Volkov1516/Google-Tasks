@@ -5,12 +5,12 @@ const Menu = (props) => {
     const showMenu = () => {
         setIsVisible(!isVisible)
     }
-
+    
     return (
         <div className='container__menu'>
             <button className='menu-btn' onClick={showMenu} >{props.name}</button>
             <ul className='menu' style={isVisible ? { 'display': 'block' } : { 'display': 'none' }}>
-                <button className='menu__create-new'  >Создать новый список</button>
+                <button className='menu__create-new' >Создать новый список</button>
                 <li className='menu__user' >mymail@mail.com</li>
                 <li className='menu__info' >Инфо</li>
             </ul>

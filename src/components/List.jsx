@@ -16,7 +16,6 @@ const List = (props) => {
         setEditInputValue(inputValue)
         setTasks([newTask, ...tasks])
         setInputValue('')
-        console.log(tasks)
     }
 
     const editTask = (id) => {  
