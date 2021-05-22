@@ -1,55 +1,7 @@
 {
-    "list": 
-        {
-            "id": "1",
-            "name": "My Tasks",
-            "tasks": [],
-            "completed": []
-        },
-    "newList": [
-        {
-            "id": "1",
-            "name": "Books",
-            "tasks": [
-                {
-                    "text": "Books1"
-                },
-                {
-                    "text": "Books2"
-                },
-                {
-                    "text": "Text3"
-                },
-                {
-                    "text": "Text4"
-                },
-                {
-                    "text": "Text5"
-                }
-            ],
-            "completed": []
-        },
-        {
-            "id": "2",
-            "name": "Tasks",
-            "tasks": [
-                {
-                    "text": "Tasks"
-                },
-                {
-                    "text": "Tasks2"
-                },
-                {
-                    "text": "Text3"
-                },
-                {
-                    "text": "Text4"
-                },
-                {
-                    "text": "Text5"
-                }
-            ],
-            "completed": []
-        }
-    ]
+    "list": {
+        "id": "1",
+        "tasks": [],
+        "completed": []
+    }
 }
