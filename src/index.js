@@ -9,6 +9,7 @@
  * Добавить функционал перетаскивания элементов
  * Адаптивный дизайн
  * Hook Reduser
+ * 
  */
 
 import { React, useState } from 'react'
