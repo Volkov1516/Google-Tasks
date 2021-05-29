@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 const List = (props) => {
 
-    const [tasks, setTasks] = useState(props.tasks)
-    const [completed, setCompleted] = useState(props.completed)
+    const [tasks, setTasks] = useState([])
+    const [completed, setCompleted] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [taskEditing, setTaskEditing] = useState(null)
     const [editInputValue, setEditInputValue] = useState('')
