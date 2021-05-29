@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const List = (props) => {
 
@@ -9,6 +9,20 @@ const List = (props) => {
     const [editInputValue, setEditInputValue] = useState('')
     const [isVisible, setIsVIsible] = useState(false)
     
+    useEffect(() => {
+        const temp = localStorage.getItem("tasks")
+        const loadedTasks = JSON.parse(temp)
+
+        if(loadedTasks){
+                setTasks(loadedTasks)
+        }
+    }, [])
+    useEffect(() => {
+        const temp = JSON.stringify(tasks)
+        localStorage.setItem("tasks", temp)
+    }, [tasks])
+
+
     const addTask = () => {
         const newTask = { 
             id: new Date().getTime(), 
@@ -70,6 +84,8 @@ const List = (props) => {
     
     return (
         <div className="container__list">
+            <h3>{props.name}</h3>
+
             <div className='list__control-panel'>
                 <input className='control-panel__input' value={inputValue} onChange={e => setInputValue(e.target.value)} />
                 <button className='control-panel__add-task-btn' onClick={addTask} >Add</button>
