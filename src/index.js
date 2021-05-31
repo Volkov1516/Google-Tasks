@@ -4,8 +4,13 @@ import { BrowserRouter } from 'react-router-dom'
 
 import Login from './components/Login'
 import List from './components/List'
-import Header from './components/Header'
-
+import Menu from './components/Menu'
+/**
+ * ЗАДАЧИ:
+ * СОЗДАНИЕ НОВОГО СПИСКА
+ * РЕГИСТРАЦИЯ
+ * ДЕПЛОЙ(без стилей)
+ */
 const App = (props) => {
     const isLoggedIn = props.isLoggedIn
 
@@ -30,7 +35,7 @@ const App = (props) => {
     if (isLoggedIn) {
         return (
             <div className='container'>
-                <Header lists={lists} createNewList={createNewList}/>
+                <Menu lists={lists} createNewList={createNewList}/>
                 {lists.map(i => <List name={i.name} />)}
             </div>
         )

@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Header({lists, createNewList}) {
+function Menu({lists, createNewList}) {
     const [isVisible, setIsVisible] = useState(false)
     const showLists = () => {
         setIsVisible(!isVisible)
@@ -19,4 +19,4 @@ function Header({lists, createNewList}) {
     )
 }
 
-export default Header
+export default Menu
