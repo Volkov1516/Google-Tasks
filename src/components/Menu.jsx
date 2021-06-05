@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Menu({lists, createNewList}) {
+function Menu() {
     const [isVisible, setIsVisible] = useState(false)
     const showLists = () => {
         setIsVisible(!isVisible)
@@ -11,8 +11,8 @@ function Menu({lists, createNewList}) {
             <button style={{display: 'block'}} onClick={showLists}>Select List</button>
             <div style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
                 <ul>
-                    {lists.map(i => <li>{i.name}</li>)}
-                    <button onClick={() => createNewList()} >Create new list</button>
+                    <li>Tasks</li>
+                    <li>Books</li>
                 </ul>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const List = (props) => {
+const List = () => {
 
     const [tasks, setTasks] = useState([])
     const [completed, setCompleted] = useState([])
@@ -84,8 +84,6 @@ const List = (props) => {
     
     return (
         <div className="container__list">
-            <h3>{props.name}</h3>
-
             <div className='list__control-panel'>
                 <input className='control-panel__input' value={inputValue} onChange={e => setInputValue(e.target.value)} />
                 <button className='control-panel__add-task-btn' onClick={addTask} >Add</button>
