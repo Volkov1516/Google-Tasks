@@ -1,27 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-const List = () => {
+const List = (props) => {
 
-    const [tasks, setTasks] = useState([])
-    const [completed, setCompleted] = useState([])
+    const [tasks, setTasks] = useState(props.tasks)
+    const [completed, setCompleted] = useState(props.completed)
     const [inputValue, setInputValue] = useState('')
     const [taskEditing, setTaskEditing] = useState(null)
     const [editInputValue, setEditInputValue] = useState('')
     const [isVisible, setIsVIsible] = useState(false)
-    
-    useEffect(() => {
-        const temp = localStorage.getItem("tasks")
-        const loadedTasks = JSON.parse(temp)
-
-        if(loadedTasks){
-                setTasks(loadedTasks)
-        }
-    }, [])
-    useEffect(() => {
-        const temp = JSON.stringify(tasks)
-        localStorage.setItem("tasks", temp)
-    }, [tasks])
-
 
     const addTask = () => {
         const newTask = { 
