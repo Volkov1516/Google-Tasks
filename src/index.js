@@ -1,46 +1,22 @@
-import { React, useState } from 'react'
+import { React, useState, useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
+import DB from './db.json'
+import reduser from './reduser'
 
 import List from './components/List'
 import Menu from './components/Menu'
 /**
- * 3. Полная реализация кнопки добавления списков
- * 4. Функция переименования списка 
- * 5. Упаковка данных в JSON и подключение JSONserver
- * 6. useReduser?
- * 7. TypeScript?
- * 8. Добавление стилей(Изучить соответствующие библиотеки)
+ * Полная реализация кнопки добавления списков
+ * Функция переименования списка 
+ * Подключение JSONserver
+ * Добавление стилей(Изучить соответствующие библиотеки)
+ * 
+ * 
+ * use Reduser
  */
 const App = () => {
-    const [data, setData] = useState([
-        {
-            id: 1,
-            name: "(id: 1) Мои задачи",
-            tasks: [
-                {
-                    id: 1,
-                    task: "(id: 1) Завершить проект"
-                },
-                {
-                    id: 2,
-                    task: "(id: 1) Купить новый дневник"
-                }
-            ],
-            completed: []
-        },
-        {
-            id: 2,
-            name: "(id: 2) Покупки",
-            tasks: [
-                {
-                    id: 2,
-                    task: "(id: 2)Купить одежду"
-                }
-            ],
-            completed: []
-        }
-    ])
+    const [data, setData] = useState(DB)
 
     const [activeList, setActiveList] = useState(1)
     const [activeListName, setActiveListName] = useState('Выберите список')
@@ -48,6 +24,7 @@ const App = () => {
         setActiveList(id)
         setActiveListName(name)
     }
+    console.log(data)
 
     const creacteList = () => {
         const updatedList = {
