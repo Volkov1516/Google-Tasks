@@ -1,26 +1,15 @@
 [
     {
         "id": 1,
-        "name": "(id: 1) Мои задачи",
+        "name": "Dafault list",
         "tasks": [
             {
                 "id": 1,
-                "task": "(id: 1) Завершить проект"
+                "task": "Complete the Project"
             },
             {
                 "id": 2,
-                "task": "(id: 1) Купить новый дневник"
-            }
-        ],
-        "completed": []
-    },
-    {
-        "id": 2,
-        "name": "(id: 2) Покупки",
-        "tasks": [
-            {
-                "id": 2,
-                "task": "(id: 2)Купить одежду"
+                "task": "Start a new Project"
             }
         ],
         "completed": []

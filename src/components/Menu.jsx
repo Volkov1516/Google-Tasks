@@ -12,7 +12,6 @@ function Menu({data, getId, creacteList, activeListName, removeList}) {
             <div style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
                 <ul>
                     {data.map(i => <li onClick={() => getId(i.id, i.name)}>{i.name}
-                        <button>Edit</button>
                         <button onClick={() => removeList(i.id)}>Remove</button>
                     </li>)}
                     <button onClick={() => creacteList()}>Creacte a new</button>

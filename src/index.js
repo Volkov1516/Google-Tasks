@@ -6,36 +6,27 @@ import reduser from './reduser'
 
 import List from './components/List'
 import Menu from './components/Menu'
-/**
- * Полная реализация кнопки добавления списков
- * Функция переименования списка 
+/** 
  * Подключение JSONserver
  * Добавление стилей(Изучить соответствующие библиотеки)
- * 
- * 
  * use Reduser
  */
 const App = () => {
     const [data, setData] = useState(DB)
 
     const [activeList, setActiveList] = useState(1)
-    const [activeListName, setActiveListName] = useState('Выберите список')
+    const [activeListName, setActiveListName] = useState('Default list')
     const setId = (id, name) => {
         setActiveList(id)
         setActiveListName(name)
     }
-    console.log(data)
 
     const creacteList = () => {
+        const listName = window.prompt("Create a name:")
         const updatedList = {
             id: data.length + 1,
-            name: "Новый список",
-            tasks: [
-                {
-                    id: 3,
-                    task: "ID 3"
-                }
-            ],
+            name: listName,
+            tasks: [],
             completed: []
         }
         setData([...data, updatedList])
