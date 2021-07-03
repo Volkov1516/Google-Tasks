@@ -1,18 +1,16 @@
-import { React, useState, useReducer } from 'react'
+import { React, useState, useEffect, useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import DB from './db.json'
 import reduser from './reduser'
+import './index.css'
+import axios from 'axios'
 
 import List from './components/List'
-import Menu from './components/Menu'
-/** 
- * Подключение JSONserver
- * Добавление стилей(Изучить соответствующие библиотеки)
- * use Reduser
- */
+import Menu from './components/Menu' 
+
 const App = () => {
-    const [data, setData] = useState(DB)
+    const [data, setData] = useState(DB.lists)
 
     const [activeList, setActiveList] = useState(1)
     const [activeListName, setActiveListName] = useState('Default list')

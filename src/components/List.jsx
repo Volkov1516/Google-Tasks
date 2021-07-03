@@ -69,31 +69,31 @@ const List = (props) => {
     }
     
     return (
-        <div className="container__list">
-            <div className='list__control-panel'>
-                <input className='control-panel__input' value={inputValue} onChange={e => setInputValue(e.target.value)} />
-                <button className='control-panel__add-task-btn' onClick={addTask} >Add</button>
+        <div >
+            <div >
+                <input  value={inputValue} onChange={e => setInputValue(e.target.value)} />
+                <button onClick={addTask} >Add</button>
             </div>
-            <div className='list__lists-area'>
+            <div>
                 <ul>
                     {tasks.map((i) =>
                         <li key={i.id}>
-                            <button className='lists-area__complete-btn' onClick={() => completeTask(i.id)} >Complete</button>
+                            <button onClick={() => completeTask(i.id)} >Complete</button>
                             {taskEditing === i.id ? (<input type="text" value={editInputValue} onChange={e => setEditInputValue(e.target.value)} />) : (<span className='lists-area__input'>{i.task}</span>)}         
                             {taskEditing === i.id ? (<button onClick={() => editTask(i.id)} >Submit edit</button>) : (<button className='lists-area__edit-btn' onClick={() => setTaskEditing(i.id)}>Edit</button>)}
-                            <button className='lists-area__remove-btn' onClick={() => removeTask(i.id)} >Remove</button>  
+                            <button onClick={() => removeTask(i.id)} >Remove</button>  
                         </li>
                     )}
                 </ul>
             </div>
-            <div className='list__completed'>
+            <div>
                 <button onClick={showCompleted} >Show completed</button>
                 <ul style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
                     {completed.map((i) => 
                         <li key={i.id}>
                             <button onClick={() => restoreTask(i.id)} >Restore</button>
                             <span>{i.task}</span>
-                            <button className='completed__remove-btn' onClick={() => removeCompletedTask(i.id)} >Remove</button>
+                            <button onClick={() => removeCompletedTask(i.id)} >Remove</button>
                         </li>
                     )}
                 </ul>

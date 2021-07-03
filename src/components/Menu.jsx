@@ -7,14 +7,14 @@ function Menu({data, getId, creacteList, activeListName, removeList}) {
     }
 
     return (
-        <div>
-            <button style={{display: 'block'}} onClick={showLists}>{activeListName}</button>
-            <div style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
+        <div className='menu'>
+            <button className='menu__menu-btn'  onClick={showLists}>{activeListName}</button>
+            <div className='menu__dropdown' style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
                 <ul>
-                    {data.map(i => <li onClick={() => getId(i.id, i.name)}>{i.name}
-                        <button onClick={() => removeList(i.id)}>Remove</button>
+                    {data.map(i => <li className='menu__item-name' onClick={() => getId(i.id, i.name)}>{i.name}
+                        <button className='menu__item-btn' onClick={() => removeList(i.id)}>remove</button>
                     </li>)}
-                    <button onClick={() => creacteList()}>Creacte a new</button>
+                    <button className='dropdown__create-btn' onClick={() => creacteList()}>Creacte a new</button>
                 </ul>
             </div>
         </div>
