@@ -1,14 +1,7 @@
-import { React, useState, useEffect, useReducer } from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import DB from './db.json'
-import reduser from './reducer'
-import './index.css'
-import axios from 'axios'
+import ReactDOM from 'react-dom';
+import { React } from 'react'
 
-import List from './components/List'
-import Menu from './components/Menu'
-
+/*
 const App = () => {
 
     const [data, setData] = useState([])
@@ -42,7 +35,7 @@ const App = () => {
     }
 
     return (
-        <div className='container'>
+        <div>
             <Menu data={data} getId={setId} creacteList={creacteList} activeListName={activeListName} removeList={removeList} />
             {data.map((i) => {
                 if (i.id === activeList)
@@ -51,5 +44,15 @@ const App = () => {
         </div>
     )
 }
+*/
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('#root'))
+const App = () => {
+
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'))

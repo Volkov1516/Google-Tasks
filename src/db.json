@@ -2,18 +2,15 @@
     "lists":[
         {
             "id": 1,
-            "name": "Default list",
-            "tasks": [
-                {
-                    "id": 1,
-                    "task": "Complete the Project"
-                },
-                {
-                    "id": 2,
-                    "task": "Start a new Project"
-                }
-            ],
-            "completed": []
+            "title": "My Tasks"
+        }
+    ],
+    "tasks": [
+        {
+            "listID": 1,
+            "id": 1,
+            "text": "To do something...",
+            "completed": false
         }
     ]
 }
