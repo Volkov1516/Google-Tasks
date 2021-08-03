@@ -1,5 +1,10 @@
 import ReactDOM from 'react-dom';
-import { React } from 'react'
+import { React, useState, useEffect } from 'react'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
+
+import Header from './components/Header/Header';
+import Body from './components/Body/Body';
 
 /*
 const App = () => {
@@ -47,12 +52,101 @@ const App = () => {
 */
 
 const App = () => {
+//Полечение данных JSON
+    const [lists, setLists] = useState([])
+    const [tasks, setTasks] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3001/lists').then(resp => setLists(resp.data))
+        .then(() => axios.get('http://localhost:3001/tasks').then(resp => setTasks(resp.data)))
+    }, [])
+
+//Функция показать/скрыть меню списков
+    const [isVisible, setIsVisible] = useState(false) 
+    const showLists = () => {
+        setIsVisible(!isVisible)
+    }
+//Функция добавление нового списка
+    const createList = () => {
+        const listTitle = window.prompt("Enter a name: ")
+        axios.post('http://localhost:3001/lists', {
+            id: uuidv4(),
+            title: listTitle
+        }).then(resp => setLists([...lists, resp.data]))
+    }
+//Функция редактирования названия списка
+    const updateList = (id) => {
+        const listTitle = window.prompt("Enter a name: ")
+        axios.put('http://localhost:3001/lists/' + id, {
+            id,
+            title: listTitle
+        }).then(resp => setLists([...lists, resp.data]))
+    }
+//Функция удаления списка из JSON
+    const deleteList = (id) => {
+        axios.delete('http://localhost:3001/lists/' + id).then(resp => setLists([...lists, resp.data]))
+    }
+
+//Функция добавления новой задачи
+    const [taskInputValue, setTaskInputValue] = useState('')
+    const createTask = () => {
+        axios.post('http://localhost:3001/tasks', {
+//В listID передать id текущего list
+            listID: 1,
+            id: uuidv4(),
+            text: taskInputValue,
+            completed: false
+        }).then(resp => setTasks([...tasks, resp.data]))
+        setTaskInputValue('')
+    }
+//Функция редактирования задачи
+    const updateTask = (id) => {
+        const taskText = window.prompt("Enter a text: ")
+        axios.put('http://localhost:3001/tasks/' + id, {
+            listID: 1,
+            id,
+            text: taskText,
+            completed: false
+        }).then(resp => setTasks([...tasks, resp.data]))
+    } 
+//Функция удаления задлачи 
+    const deleteTask = (id) => {
+        axios.delete('http://localhost:3001/tasks/' + id).then(resp => setTasks([...tasks, resp.data]))
+    } 
+//Функция завершения задачи, а также ее восстановление
+    const completeTask = (id) => {
+        tasks.map(i => {
+            if(i.id === id && i.completed === false) {
+                return axios.put('http://localhost:3001/tasks/' + id, {
+                    listID: i.listID,
+                    id: i.id,
+                    text: i.text,
+                    completed: true
+                }).then(resp => setTasks([...tasks, resp.data]))
+                
+            } else if(i.id === id && i.completed === true){
+                return axios.put('http://localhost:3001/tasks/' + id, {
+                    listID: i.listID,
+                    id: i.id,
+                    text: i.text,
+                    completed: false
+                }).then(resp => setTasks([...tasks, resp.data]))
+            }
+        })
+    } 
+
 
     return (
         <div>
-            
+            <Header lists={lists} isVisible={isVisible} showLists={showLists} createList={createList} updateList={updateList} deletePost={deleteList} />
+            <Body tasks={tasks} taskInputValue={taskInputValue} setTaskInputValue={setTaskInputValue} createTask={createTask} updateTask={updateTask} deleteTask={deleteTask} completeTask={completeTask}/>
         </div>
     )
 }
 
 ReactDOM.render(<App />, document.querySelector('#root'))
+
+/**
+ * ЗАДАЧИ:
+ * - Решать баг с рендером при редактировании и удалении объекта в функциях udpade/deleteList
+ * - Нужно создать условие рендера для tasks в зависимости от активного list
+ */

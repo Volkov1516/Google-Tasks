@@ -1,16 +1,16 @@
 {
-    "lists":[
-        {
-            "id": 1,
-            "title": "My Tasks"
-        }
-    ],
-    "tasks": [
-        {
-            "listID": 1,
-            "id": 1,
-            "text": "To do something...",
-            "completed": false
-        }
-    ]
+  "lists": [
+    {
+      "id": 1,
+      "title": "My Tasks"
+    }
+  ],
+  "tasks": [
+    {
+      "listID": 1,
+      "id": 1,
+      "text": "To do something...",
+      "completed": false
+    }
+  ]
 }
