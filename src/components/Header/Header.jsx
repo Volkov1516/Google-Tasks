@@ -1,4 +1,4 @@
-const Header = ({ lists, isVisible, showLists, createList, updateList, deleteList }) => {
+const Header = ({ lists, isVisible, showLists, selectListId, createList, updateList, deleteList }) => {
     return (
         <div>
             <div>
@@ -9,7 +9,7 @@ const Header = ({ lists, isVisible, showLists, createList, updateList, deleteLis
             </div>
             <div style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
                 {lists.map(i => <div key={i.id}>
-                    {i.title}
+                    <span onClick={() => selectListId(i.id)}>{i.title}</span>
                     <button onClick={() => updateList(i.id)}>Update</button>
                     <button onClick={() => deleteList(i.id)}>Delete</button>
                 </div>)}

@@ -3,6 +3,10 @@
     {
       "id": 1,
       "title": "My Tasks"
+    },
+    {
+      "id": "bd4ec59d-257e-4f88-a000-127ba09542d4",
+      "title": "New List"
     }
   ],
   "tasks": [
@@ -10,6 +14,18 @@
       "listID": 1,
       "id": 1,
       "text": "To do something...",
+      "completed": false
+    },
+    {
+      "listID": 1,
+      "id": "6640590e-e186-45fb-8860-248545b9b70f",
+      "text": "Edited Task",
+      "completed": true
+    },
+    {
+      "listID": "bd4ec59d-257e-4f88-a000-127ba09542d4",
+      "id": "f8cd71e7-8eba-4be2-9749-9fd731104077",
+      "text": "The First Task!",
       "completed": false
     }
   ]

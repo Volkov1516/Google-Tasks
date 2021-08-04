@@ -1,13 +1,13 @@
-const Body = ({ tasks, taskInputValue, setTaskInputValue, createTask, updateTask, deleteTask,  completeTask}) => {
+const Body = ({ tasks, isVisibleCompleted, listIdValue, showCompleted, taskInputValue, setTaskInputValue, createTask, updateTask, deleteTask, completeTask }) => {
     return (
         <div>
             <div>
-                <input value={taskInputValue} onChange={e => setTaskInputValue(e.target.value)}/>
+                <input value={taskInputValue} onChange={e => setTaskInputValue(e.target.value)} />
                 <button onClick={() => createTask()}>Submit</button>
             </div>
             <div>
                 {tasks.map((i) => {
-                    if(!i.completed) {
+                    if (i.listID === listIdValue && !i.completed) {
                         return <div key={i.id}>
                             <button onClick={() => completeTask(i.id)}>Complete</button>
                             {i.text}
@@ -18,16 +18,18 @@ const Body = ({ tasks, taskInputValue, setTaskInputValue, createTask, updateTask
                 })}
             </div>
             <div>
-                <button>Show Completed</button>
-                {tasks.map((i) => {
-                    if(i.completed) {
-                        return <div key={i.id}>
-                            <button onClick={() => completeTask(i.id)}>Restore</button>
-                            {i.text}
-                            <button onClick={() => deleteTask(i.id)}>Delete</button>
-                        </div>
-                    }
-                })}
+                <button onClick={showCompleted}>Show Completed</button>
+                <div style={isVisibleCompleted ?  ({display: 'block'}) : ({display: 'none'})}>
+                    {tasks.map((i) => {
+                        if (i.listID === listIdValue && i.completed) {
+                            return <div key={i.id}>
+                                <button onClick={() => completeTask(i.id)}>Restore</button>
+                                {i.text}
+                                <button onClick={() => deleteTask(i.id)}>Delete</button>
+                            </div>
+                        }
+                    })}
+                </div>
             </div>
         </div>
     )
