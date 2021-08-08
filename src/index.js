@@ -1,10 +1,12 @@
 import ReactDOM from 'react-dom';
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 
 import Header from './components/Header/Header';
 import Body from './components/Body/Body';
+
+import TasksState from './context/TasksState';
 
 /*
 const App = () => {
@@ -52,20 +54,14 @@ const App = () => {
 */
 
 const App = () => {
-//Полечение данных JSON
+    //Получение данных JSON
     const [lists, setLists] = useState([])
     const [tasks, setTasks] = useState([])
     useEffect(() => {
         axios.get('http://localhost:3001/lists').then(resp => setLists(resp.data))
-        .then(() => axios.get('http://localhost:3001/tasks').then(resp => setTasks(resp.data)))
+            .then(() => axios.get('http://localhost:3001/tasks').then(resp => setTasks(resp.data)))
     }, [])
-
-//Функция показать/скрыть меню списков
-    const [isVisible, setIsVisible] = useState(false) 
-    const showLists = () => {
-        setIsVisible(!isVisible)
-    }
-//Функция добавление нового списка
+    //Функция добавление нового списка
     const createList = () => {
         const listTitle = window.prompt("Enter a name: ")
         axios.post('http://localhost:3001/lists', {
@@ -73,7 +69,7 @@ const App = () => {
             title: listTitle
         }).then(resp => setLists([...lists, resp.data]))
     }
-//Функция редактирования названия списка
+    //Функция редактирования названия списка
     const updateList = (id) => {
         const listTitle = window.prompt("Enter a name: ")
         axios.put('http://localhost:3001/lists/' + id, {
@@ -81,20 +77,21 @@ const App = () => {
             title: listTitle
         }).then(resp => setLists([...lists, resp.data]))
     }
-//Функция удаления списка из JSON
+    //Функция удаления списка из JSON
     const deleteList = (id) => {
         axios.delete('http://localhost:3001/lists/' + id).then(resp => setLists([...lists, resp.data]))
     }
-//Функция выбора списка задач по клику на список
-const [listIdValue, setListIdValue] = useState(1)
-const selectListId = (id) => {
-    lists.map((i) => {
-        if(i.id === id){
-            setListIdValue(id)
-        }
-    })
-}  
-//Функция добавления новой задачи
+    //Функция выбора списка задач по клику на список
+    //Здест  нужно передавать не 1, а id первого списка из массива
+    const [listIdValue, setListIdValue] = useState(1)
+    const selectListId = (id) => {
+        lists.map((i) => {
+            if (i.id === id) {
+                setListIdValue(id)
+            }
+        })
+    }
+    //Функция добавления новой задачи
     const [taskInputValue, setTaskInputValue] = useState('')
     const createTask = () => {
         axios.post('http://localhost:3001/tasks', {
@@ -105,7 +102,7 @@ const selectListId = (id) => {
         }).then(resp => setTasks([...tasks, resp.data]))
         setTaskInputValue('')
     }
-//Функция редактирования задачи
+    //Функция редактирования задачи
     const updateTask = (id) => {
         const taskText = window.prompt("Enter a text: ")
         axios.put('http://localhost:3001/tasks/' + id, {
@@ -114,23 +111,23 @@ const selectListId = (id) => {
             text: taskText,
             completed: false
         }).then(resp => setTasks([...tasks, resp.data]))
-    } 
-//Функция удаления задачи 
+    }
+    //Функция удаления задачи 
     const deleteTask = (id) => {
         axios.delete('http://localhost:3001/tasks/' + id).then(resp => setTasks([...tasks, resp.data]))
-    } 
-//Функция завершения задачи, а также ее восстановление
+    }
+    //Функция завершения задачи, а также ее восстановление
     const completeTask = (id) => {
         tasks.map(i => {
-            if(i.id === id && i.completed === false) {
+            if (i.id === id && i.completed === false) {
                 return axios.put('http://localhost:3001/tasks/' + id, {
                     listID: i.listID,
                     id: i.id,
                     text: i.text,
                     completed: true
                 }).then(resp => setTasks([...tasks, resp.data]))
-                
-            } else if(i.id === id && i.completed === true){
+
+            } else if (i.id === id && i.completed === true) {
                 return axios.put('http://localhost:3001/tasks/' + id, {
                     listID: i.listID,
                     id: i.id,
@@ -139,17 +136,19 @@ const selectListId = (id) => {
                 }).then(resp => setTasks([...tasks, resp.data]))
             }
         })
-    } 
-//Функция показать/скрыть завершенные задачи
-    const [isVisibleCompleted, setIsVisibleCompleted] = useState(false) 
+    }
+    //Функция показать/скрыть завершенные задачи
+    const [isVisibleCompleted, setIsVisibleCompleted] = useState(false)
     const showCompleted = () => {
         setIsVisibleCompleted(!isVisibleCompleted)
     }
 
     return (
         <div>
-            <Header lists={lists} isVisible={isVisible} showLists={showLists} selectListId={selectListId} createList={createList} updateList={updateList} deleteList={deleteList} />
-            <Body tasks={tasks} isVisibleCompleted={isVisibleCompleted} listIdValue={listIdValue} showCompleted={showCompleted} taskInputValue={taskInputValue} setTaskInputValue={setTaskInputValue} createTask={createTask} updateTask={updateTask} deleteTask={deleteTask} completeTask={completeTask}/>
+            <TasksState>
+                <Header lists={lists} selectListId={selectListId} createList={createList} updateList={updateList} deleteList={deleteList} />
+                <Body tasks={tasks} isVisibleCompleted={isVisibleCompleted} listIdValue={listIdValue} showCompleted={showCompleted} taskInputValue={taskInputValue} setTaskInputValue={setTaskInputValue} createTask={createTask} updateTask={updateTask} deleteTask={deleteTask} completeTask={completeTask} />
+            </TasksState>
         </div>
     )
 }
@@ -159,10 +158,10 @@ ReactDOM.render(<App />, document.querySelector('#root'))
 /**************************************************************************************************
  * ЗАДАЧИ:
  * - Баг с рендером при редактировании и удалении объекта в функциях udpade/deleteList
- * - Баг с первоначальным listIdValue = 1 
+ * - Баг с первоначальным listIdValue = 1
  * - Баг названия активного списка в header
- * 
- * 
+ *
+ *
  * - Добавить useReduser + useContext
  * - Добавить стили. Изучить библиотеки для UI
  */
