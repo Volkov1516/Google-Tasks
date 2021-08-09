@@ -5,22 +5,16 @@
       "title": "My Tasks"
     },
     {
-      "id": "bd4ec59d-257e-4f88-a000-127ba09542d4",
+      "id": "61afaa5a-64c3-44f0-b864-01fd475d2d52",
       "title": "New List"
     }
   ],
   "tasks": [
     {
       "listID": 1,
-      "id": 1,
-      "text": "To do something...",
-      "completed": false
-    },
-    {
-      "listID": 1,
       "id": "6640590e-e186-45fb-8860-248545b9b70f",
       "text": "Edited Task",
-      "completed": true
+      "completed": false
     },
     {
       "listID": "bd4ec59d-257e-4f88-a000-127ba09542d4",

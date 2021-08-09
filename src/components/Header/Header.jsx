@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import tasksContext from "../../context/tasks-context";
 
-const Header = ({ lists, selectListId, createList, updateList, deleteList }) => {
+const Header = () => {
 
-    const { isVisible, toggleListMenu } = useContext(tasksContext)
+    const { lists, isVisible, toggleListMenu, selectList, createList2, updateList2, deleteList2 } = useContext(tasksContext)
 
     return (
         <div>
@@ -15,12 +15,12 @@ const Header = ({ lists, selectListId, createList, updateList, deleteList }) => 
             </div>
             <div style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
                 {lists.map(i => <div key={i.id}>
-                    <span onClick={() => selectListId(i.id)}>{i.title}</span>
-                    <button onClick={() => updateList(i.id)}>Update</button>
-                    <button onClick={() => deleteList(i.id)}>Delete</button>
+                    <span onClick={() => selectList(i.id)}>{i.title}</span>
+                    <button onClick={() => updateList2(i.id)}>Update</button>
+                    <button onClick={() => deleteList2(i.id)}>Delete</button>
                 </div>)}
                 {/**По нажатию должен создавать новый список */}
-                <button onClick={() => createList()} >Create new list</button>
+                <button onClick={() => createList2()}>Create new list</button>
             </div>
         </div>
     )
