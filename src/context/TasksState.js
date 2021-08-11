@@ -2,7 +2,7 @@ import React, {useState, useEffect, useReducer} from 'react'
 import tasksContext from './tasks-context'
 import tasksReducer from './tasks-reducer'
 import {
-    GET_LISTS, TOGGLE_LIST_MENU, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST,
+    GET_LISTS, SET_INITIAL_LIST, TOGGLE_LIST_MENU, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST,
     GET_TASKS, SHOW_COMPLETED, CREATE_TASK, UPDATE_TASK, DELETE_TASK, COMPLETE_TASK
 } from './tasks-actions'
 
@@ -31,6 +31,14 @@ const TasksState = (props) => {
             })
         })
     },[])
+    //Функция выбора первого списка для рендера
+    //Здесь должен устанавливаться не только Id, но и Title для активного заголовка(его надо создать)
+    useEffect(() => {
+        dispatch({
+            type: SET_INITIAL_LIST,
+            payload: "fc8e2599-2420-4d7f-882a-86e75e4d227e"
+        })
+    }, [])
     //Функция показать/скрыть меню списка
     const toggleListMenu = () => {
         dispatch({
@@ -99,7 +107,7 @@ const TasksState = (props) => {
     const [taskInputValue2, setTaskInputValue2] = useState('')
     const createTask2 = () => {
         axios.post('http://localhost:3001/tasks', {
-            listID: 1,
+            listID: state.listIdValue,
             id: uuidv4(),
             text: taskInputValue2,
             completed: false
@@ -115,7 +123,7 @@ const TasksState = (props) => {
     const updateTask2 = (id) => {
         const taskText = window.prompt("Enter a text: ")
         axios.put('http://localhost:3001/tasks/' + id, {
-            listID: 1,
+            listID: state.listIdValue,
             id,
             text: taskText,
             completed: false

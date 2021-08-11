@@ -1,5 +1,5 @@
 import {
-    GET_LISTS, TOGGLE_LIST_MENU, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST,
+    GET_LISTS, SET_INITIAL_LIST, TOGGLE_LIST_MENU, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST,
     GET_TASKS, SHOW_COMPLETED, CREATE_TASK, UPDATE_TASK, DELETE_TASK, COMPLETE_TASK
 } from './tasks-actions'
 
@@ -10,6 +10,11 @@ const tasksReducer = (state, action) => {
             return {
                 ...state,
                 lists: action.payload
+            }
+        case SET_INITIAL_LIST:
+            return {
+                ...state,
+                listIdValue: action.payload
             }
         case TOGGLE_LIST_MENU:
             return {

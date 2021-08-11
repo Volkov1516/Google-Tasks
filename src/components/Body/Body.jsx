@@ -1,6 +1,12 @@
 import React, {useContext} from "react";
 import tasksContext from "../../context/tasks-context";
 
+import {Button, TextField, IconButton, Typography} from "@material-ui/core";
+import DonutLargeRoundedIcon from '@material-ui/icons/DonutLargeRounded';
+import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+
 const Body = () => {
 
     const { tasks, listIdValue, isVisibleCompleted2, showCompleted2, taskInputValue2, setTaskInputValue2, createTask2, updateTask2, deleteTask2, completeTask2 } = useContext(tasksContext)
@@ -8,30 +14,44 @@ const Body = () => {
     return (
         <div>
             <div>
-                <input value={taskInputValue2} onChange={e => setTaskInputValue2(e.target.value)} />
-                <button onClick={() => createTask2()}>Submit</button>
+                <TextField value={taskInputValue2} onChange={e => setTaskInputValue2(e.target.value)}  variant="outlined" size="small" />
+                <Button onClick={() => createTask2()} size="medium" variant="contained" color="primary" >Submit</Button>
             </div>
             <div>
                 {tasks.map((i) => {
                     if (i.listID === listIdValue && !i.completed) {
                         return <div key={i.id}>
-                            <button onClick={() => completeTask2(i.id)}>Complete</button>
-                            {i.text}
-                            <button onClick={() => updateTask2(i.id)} >Update</button>
-                            <button onClick={() => deleteTask2(i.id)} >Delete</button>
+                            <IconButton>
+                                <DonutLargeRoundedIcon onClick={() => completeTask2(i.id)} fontSize="small"/>
+                            </IconButton>
+                            <Typography style={({display: 'inline-block'})}>
+                                {i.text}
+                            </Typography>
+                            <IconButton>
+                                <EditRoundedIcon onClick={() => updateTask2(i.id)} fontSize="small" />
+                            </IconButton>
+                            <IconButton>
+                                <DeleteRoundedIcon onClick={() => deleteTask2(i.id)} fontSize="small" />
+                            </IconButton>
                         </div>
                     }
                 })}
             </div>
             <div>
-                <button onClick={showCompleted2}>Show Completed</button>
+                <Button onClick={showCompleted2} color="primary" >Show Completed</Button>
                 <div style={isVisibleCompleted2 ?  ({display: 'block'}) : ({display: 'none'})}>
                     {tasks.map((i) => {
                         if (i.listID === listIdValue && i.completed) {
                             return <div key={i.id}>
-                                <button onClick={() => completeTask2(i.id)}>Restore</button>
-                                {i.text}
-                                <button onClick={() => deleteTask2(i.id)}>Delete</button>
+                                <IconButton>
+                                    <DoneRoundedIcon onClick={() => completeTask2(i.id)} fontSize="small" color="primary"/>
+                                </IconButton>
+                                <Typography style={({display: 'inline-block'})}>
+                                    {i.text}
+                                </Typography>
+                                <IconButton>
+                                    <DeleteRoundedIcon onClick={() => deleteTask2(i.id)} fontSize="small" />
+                                </IconButton>
                             </div>
                         }
                     })}
