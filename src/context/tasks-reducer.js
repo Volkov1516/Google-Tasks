@@ -14,7 +14,8 @@ const tasksReducer = (state, action) => {
         case SET_INITIAL_LIST:
             return {
                 ...state,
-                listIdValue: action.payload
+                listIdValue: action.payloadId,
+                activeListTitle: action.payloadTitle
             }
         case TOGGLE_LIST_MENU:
             return {
@@ -24,7 +25,8 @@ const tasksReducer = (state, action) => {
         case SELECT_LIST:
             return {
                 ...state,
-                listIdValue: action.payload
+                listIdValue: action.payloadId,
+                activeListTitle: action.payloadTitle
             }
         case CREATE_LIST:
             return {

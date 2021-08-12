@@ -2,11 +2,11 @@
   "lists": [
     {
       "id": "fc8e2599-2420-4d7f-882a-86e75e4d227e",
-      "title": "New List"
+      "title": "This is my list"
     },
     {
       "id": "9b737053-814e-4783-9872-ffee1a8daa3e",
-      "title": "Main LIst"
+      "title": "Лалала"
     },
     {
       "id": "4497c051-d65c-49d4-a677-a39330e5cccb",
@@ -35,7 +35,7 @@
     {
       "listID": "fc8e2599-2420-4d7f-882a-86e75e4d227e",
       "id": "3d29e66a-d86b-4536-ad38-4c002f1efaa7",
-      "text": "Success!",
+      "text": "Buy some milk",
       "completed": false
     },
     {
@@ -48,7 +48,7 @@
       "listID": "fc8e2599-2420-4d7f-882a-86e75e4d227e",
       "id": "b7af9232-b374-45c4-aac5-2e38f90a7751",
       "text": "Another Task",
-      "completed": false
+      "completed": true
     }
   ]
 }

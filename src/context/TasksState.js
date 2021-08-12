@@ -16,29 +16,34 @@ const TasksState = (props) => {
         tasks: [],
         isVisible: false,
         listIdValue: 1,
+        activeListTitle: '',
         isVisibleCompleted2: false,
         taskInputValue2: ''
     }
 
     const [state, dispatch] = useReducer(tasksReducer, initialState)
 
-    //Функция получения lists из JSON
+    //Функция получения lists из JSON.
+    //Рендер первого списка из массива по умолчанию при обновлении
+    //Также рендер этого же title для заголовка
     useEffect(() => {
         axios.get('http://localhost:3001/lists').then((resp) => {
             dispatch({
                 type: GET_LISTS,
                 payload: resp.data
             })
+            const initialListId = resp.data[0].id
+            const initialListTitle = resp.data[0].title
+            dispatch({
+                type: SET_INITIAL_LIST,
+                payloadId: initialListId,
+                payloadTitle: initialListTitle
+            })
         })
     },[])
     //Функция выбора первого списка для рендера
     //Здесь должен устанавливаться не только Id, но и Title для активного заголовка(его надо создать)
-    useEffect(() => {
-        dispatch({
-            type: SET_INITIAL_LIST,
-            payload: "fc8e2599-2420-4d7f-882a-86e75e4d227e"
-        })
-    }, [])
+
     //Функция показать/скрыть меню списка
     const toggleListMenu = () => {
         dispatch({
@@ -46,37 +51,43 @@ const TasksState = (props) => {
         })
     }
     //Функция выбора списка
-    const selectList = (id) => {
+    const selectList = (id, title) => {
         dispatch({
             type: SELECT_LIST,
-            payload: id
+            payloadId: id,
+            payloadTitle: title
         })
     }
     //Функция создания списка
     const createList2 = () => {
         const listTitle = window.prompt("Enter a name: ")
-        axios.post('http://localhost:3001/lists', {
-            id: uuidv4(),
-            title: listTitle
-        }).then((resp) => {
-            dispatch({
-                type: CREATE_LIST,
-                payload: resp.data
+        {listTitle ? (
+            axios.post('http://localhost:3001/lists', {
+                id: uuidv4(),
+                title: listTitle
+            }).then((resp) => {
+                dispatch({
+                    type: CREATE_LIST,
+                    payload: resp.data
+                })
             })
-        })
+        ) : alert("Неправильное имя списка!")}
     }
     //Функция редактирования названия списка
     const updateList2 = (id) => {
         const listTitle = window.prompt("Enter a name: ")
-        axios.put('http://localhost:3001/lists/' + id, {
-            id,
-            title: listTitle
-        }).then((resp) => {
-            dispatch({
-                type: UPDATE_LIST,
-                payload: resp.data
+        {listTitle ? (
+            axios.put('http://localhost:3001/lists/' + id, {
+                id,
+                title: listTitle
+            }).then((resp) => {
+                dispatch({
+                    type: UPDATE_LIST,
+                    payload: resp.data
+                })
             })
-        })
+        ) : (alert("Невозможно создать пустой список!"))}
+
     }
     //Функция удаления списка из JSON
     const deleteList2 = (id) => {
@@ -106,33 +117,41 @@ const TasksState = (props) => {
     //Функция добавления новой задачи
     const [taskInputValue2, setTaskInputValue2] = useState('')
     const createTask2 = () => {
-        axios.post('http://localhost:3001/tasks', {
-            listID: state.listIdValue,
-            id: uuidv4(),
-            text: taskInputValue2,
-            completed: false
-        }).then((resp) => {
-            dispatch({
-                type: CREATE_TASK,
-                payload: resp.data
-            })
-        })
+        {taskInputValue2 ? (
+                axios.post('http://localhost:3001/tasks', {
+                    listID: state.listIdValue,
+                    id: uuidv4(),
+                    text: taskInputValue2,
+                    completed: false
+                }).then((resp) => {
+                    dispatch({
+                        type: CREATE_TASK,
+                        payload: resp.data
+                    })
+                })
+
+        ) : (
+            alert("Невозможно создать пустой список!")
+        )}
         setTaskInputValue2('')
     }
     //Функция редактирования задачи
     const updateTask2 = (id) => {
         const taskText = window.prompt("Enter a text: ")
-        axios.put('http://localhost:3001/tasks/' + id, {
-            listID: state.listIdValue,
-            id,
-            text: taskText,
-            completed: false
-        }).then((resp) => {
-            dispatch({
-                type: UPDATE_TASK,
-                payload: resp.data
+        {taskText ? (
+            axios.put('http://localhost:3001/tasks/' + id, {
+                listID: state.listIdValue,
+                id,
+                text: taskText,
+                completed: false
+            }).then((resp) => {
+                dispatch({
+                    type: UPDATE_TASK,
+                    payload: resp.data
+                })
             })
-        })
+        ) : (alert("Невозможно создать пустой список!"))}
+
     }
     //Функция удаления задачи
     const deleteTask2 = (id) => {
@@ -178,6 +197,7 @@ const TasksState = (props) => {
     return (
     <tasksContext.Provider value={{
         lists: state.lists,
+        activeListTitle: state.activeListTitle,
         isVisible: state.isVisible,
         toggleListMenu,
         listIdValue: state.listIdValue,

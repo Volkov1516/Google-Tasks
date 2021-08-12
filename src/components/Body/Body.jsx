@@ -18,7 +18,7 @@ const Body = () => {
                 <Button onClick={() => createTask2()} size="medium" variant="contained" color="primary" >Submit</Button>
             </div>
             <div>
-                {tasks.map((i) => {
+                {tasks ? (tasks.map((i) => {
                     if (i.listID === listIdValue && !i.completed) {
                         return <div key={i.id}>
                             <IconButton>
@@ -35,7 +35,10 @@ const Body = () => {
                             </IconButton>
                         </div>
                     }
-                })}
+                })) : <div>
+                    {/*Это div нужно оформить*/}
+                    Задач нет
+                </div>}
             </div>
             <div>
                 <Button onClick={showCompleted2} color="primary" >Show Completed</Button>

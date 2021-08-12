@@ -8,28 +8,31 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 const Header = () => {
 
-    const { lists, isVisible, toggleListMenu, selectList, createList2, updateList2, deleteList2 } = useContext(tasksContext)
+    const { lists, activeListTitle, isVisible, toggleListMenu, selectList, createList2, updateList2, deleteList2 } = useContext(tasksContext)
 
     return (
         <div>
             <div>
-                {/**Должен отображаться название текущего списка */}
                 <Button onClick={() => toggleListMenu()} >
-                    List Title
+                    {activeListTitle}
                     <ArrowDropDownRoundedIcon />
                 </Button>
             </div>
             <div style={isVisible ?  ({display: 'block'}) : ({display: 'none'})}>
-                {lists.map(i => <MenuItem key={i.id}>
-                    <span onClick={() => selectList(i.id)}>{i.title}</span>
+                {lists ? (lists.map(i =>
+                    <MenuItem key={i.id}>
+                    <span onClick={() => selectList(i.id, i.title)}>{i.title}</span>
                     <IconButton>
                         <EditRoundedIcon onClick={() => updateList2(i.id)} fontSize="small" />
                     </IconButton>
                     <IconButton>
                         <DeleteRoundedIcon onClick={() => deleteList2(i.id)} fontSize="small" />
                     </IconButton>
-                </MenuItem>)}
-                {/**По нажатию должен создавать новый список */}
+                    </MenuItem>)) :
+                    <div>
+                        {/*Этот div нужно оформить!*/}
+                        Списков нет!
+                    </div>}
                 <Button onClick={() => createList2()} size="small" variant="contained" color="primary" >Create new list</Button>
             </div>
         </div>
