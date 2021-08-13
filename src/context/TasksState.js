@@ -41,9 +41,15 @@ const TasksState = (props) => {
             })
         })
     },[])
-    //Функция выбора первого списка для рендера
-    //Здесь должен устанавливаться не только Id, но и Title для активного заголовка(его надо создать)
-
+    //Функция обновления list при изменении
+    useEffect(() => {
+        axios.get('http://localhost:3001/lists').then((resp) => {
+            dispatch({
+                type: GET_LISTS,
+                payload: resp.data
+            })
+        })
+    }, [state.lists])
     //Функция показать/скрыть меню списка
     const toggleListMenu = () => {
         dispatch({
@@ -87,7 +93,6 @@ const TasksState = (props) => {
                 })
             })
         ) : (alert("Невозможно создать пустой список!"))}
-
     }
     //Функция удаления списка из JSON
     const deleteList2 = (id) => {
@@ -98,7 +103,6 @@ const TasksState = (props) => {
             })
         })
     }
-
     //Функция получения tasks из JSON
     useEffect(() => {
         axios.get('http://localhost:3001/tasks').then((resp) => {
@@ -108,6 +112,15 @@ const TasksState = (props) => {
             })
         })
     },[])
+    //Функция обновления tasks при изменении
+    useEffect(() => {
+        axios.get('http://localhost:3001/tasks').then((resp) => {
+            dispatch({
+                type: GET_TASKS,
+                payload: resp.data
+            })
+        })
+    }, [state.tasks])
     //Функция показать/скрыть завершенные задачи
     const showCompleted2 = () => {
         dispatch({
@@ -151,7 +164,6 @@ const TasksState = (props) => {
                 })
             })
         ) : (alert("Невозможно создать пустой список!"))}
-
     }
     //Функция удаления задачи
     const deleteTask2 = (id) => {
