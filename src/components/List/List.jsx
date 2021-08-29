@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import tasksContext from "../../context/tasks-context";
 
-import {Button, TextField, IconButton, Typography} from "@material-ui/core";
+import {Button, IconButton, Typography} from "@material-ui/core";
 import DonutLargeRoundedIcon from '@material-ui/icons/DonutLargeRounded';
 import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
@@ -9,14 +9,10 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 const Body = () => {
 
-    const { tasks, listIdValue, isVisibleCompleted2, showCompleted2, taskInputValue2, setTaskInputValue2, createTask2, updateTask2, deleteTask2, completeTask2 } = useContext(tasksContext)
+    const { tasks, listIdValue, isVisibleCompleted2, showCompleted2, updateTask2, deleteTask2, completeTask2 } = useContext(tasksContext)
 
     return (
         <div>
-            <div>
-                <TextField value={taskInputValue2} onChange={e => setTaskInputValue2(e.target.value)}  variant="outlined" size="small" />
-                <Button onClick={() => createTask2()} size="medium" variant="contained" color="primary" >Submit</Button>
-            </div>
             <div>
                 {tasks ? (tasks.map((i) => {
                     if (i.listID === listIdValue && !i.completed) {

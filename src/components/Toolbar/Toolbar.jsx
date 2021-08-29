@@ -6,7 +6,7 @@ import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
-const Header = () => {
+const Topbar = () => {
 
     const { lists, activeListTitle, isVisible, toggleListMenu, selectList, createList2, updateList2, deleteList2 } = useContext(tasksContext)
 
@@ -39,4 +39,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Topbar
