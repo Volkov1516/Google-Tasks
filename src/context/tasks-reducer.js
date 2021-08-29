@@ -1,6 +1,6 @@
 import {
-    GET_LISTS, SET_INITIAL_LIST, TOGGLE_LIST_MENU, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST,
-    GET_TASKS, SHOW_COMPLETED, CREATE_TASK, UPDATE_TASK, DELETE_TASK, COMPLETE_TASK
+    GET_LISTS, SET_INITIAL_LIST, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST, TOGGLE_SUBMENU,
+    GET_TASKS, CREATE_TASK, UPDATE_TASK, DELETE_TASK, COMPLETE_TASK
 } from './tasks-actions'
 
 const tasksReducer = (state, action) => {
@@ -16,11 +16,6 @@ const tasksReducer = (state, action) => {
                 ...state,
                 listIdValue: action.payloadId,
                 activeListTitle: action.payloadTitle
-            }
-        case TOGGLE_LIST_MENU:
-            return {
-                ...state,
-                isVisible: !state.isVisible
             }
         case SELECT_LIST:
             return {
@@ -43,17 +38,15 @@ const tasksReducer = (state, action) => {
                 ...state,
                 lists: [...state.lists, action.payload]
             }
-
-        //Tasks
+        case TOGGLE_SUBMENU:
+            return {
+                ...state,
+                lists: [...state.lists, action.payload]
+            }
         case  GET_TASKS:
             return {
                 ...state,
                 tasks: action.payload
-            }
-        case  SHOW_COMPLETED:
-            return {
-                ...state,
-                isVisibleCompleted2: !state.isVisibleCompleted2
             }
         case CREATE_TASK:
             return {

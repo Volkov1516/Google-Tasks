@@ -1,63 +1,51 @@
-import React, {useContext} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import tasksContext from "../../context/tasks-context";
 
-import {Button, IconButton, Typography} from "@material-ui/core";
-import DonutLargeRoundedIcon from '@material-ui/icons/DonutLargeRounded';
-import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import ListItem from "./ListItem/ListItem";
+import CompletedItem from "./CompletedItem/CompletedItem";
+import useStyles from "./stylesList";
+import {Button} from "@material-ui/core";
 
-const Body = () => {
+const List = () => {
+    const classes = useStyles()
 
-    const { tasks, listIdValue, isVisibleCompleted2, showCompleted2, updateTask2, deleteTask2, completeTask2 } = useContext(tasksContext)
+    const {tasks, listIdValue} = useContext(tasksContext)
+
+    const [isActive, setIsActive] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
 
     return (
         <div>
             <div>
-                {tasks ? (tasks.map((i) => {
+                {tasks.map((i) => {
                     if (i.listID === listIdValue && !i.completed) {
                         return <div key={i.id}>
-                            <IconButton>
-                                <DonutLargeRoundedIcon onClick={() => completeTask2(i.id)} fontSize="small"/>
-                            </IconButton>
-                            <Typography style={({display: 'inline-block'})}>
-                                {i.text}
-                            </Typography>
-                            <IconButton>
-                                <EditRoundedIcon onClick={() => updateTask2(i.id)} fontSize="small" />
-                            </IconButton>
-                            <IconButton>
-                                <DeleteRoundedIcon onClick={() => deleteTask2(i.id)} fontSize="small" />
-                            </IconButton>
+                            <ListItem text={i.text} id={i.id}/>
                         </div>
                     }
-                })) : <div>
-                    {/*Это div нужно оформить*/}
-                    Задач нет
-                </div>}
+                })}
             </div>
-            <div>
-                <Button onClick={showCompleted2} color="primary" >Show Completed</Button>
-                <div style={isVisibleCompleted2 ?  ({display: 'block'}) : ({display: 'none'})}>
-                    {tasks.map((i) => {
-                        if (i.listID === listIdValue && i.completed) {
-                            return <div key={i.id}>
-                                <IconButton>
-                                    <DoneRoundedIcon onClick={() => completeTask2(i.id)} fontSize="small" color="primary"/>
-                                </IconButton>
-                                <Typography style={({display: 'inline-block'})}>
-                                    {i.text}
-                                </Typography>
-                                <IconButton>
-                                    <DeleteRoundedIcon onClick={() => deleteTask2(i.id)} fontSize="small" />
-                                </IconButton>
-                            </div>
-                        }
-                    })}
-                </div>
+            <Button
+                onClick={() => {
+                    setIsVisible(!isVisible)
+                    setIsActive(!isActive)
+                }}
+                style={isActive ?  ({backgroundColor: "#dadce0"}) : null}
+                className={classes.toggleBtn}
+            >
+                Completed
+            </Button>
+            <div style={isVisible ? ({display: 'block'}) : ({display: 'none'})}>
+                {tasks.map((i) => {
+                    if (i.listID === listIdValue && i.completed) {
+                        return <div key={i.id}>
+                            <CompletedItem text={i.text} id={i.id}/>
+                        </div>
+                    }
+                })}
             </div>
         </div>
     )
 }
 
-export default Body
+export default List
