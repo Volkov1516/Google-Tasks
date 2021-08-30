@@ -1,18 +1,8 @@
 {
   "lists": [
     {
-      "id": "8681478c-eae4-4662-9432-bb7e61d8f7e1",
-      "title": "Tasks",
-      "submenu": false
-    },
-    {
-      "id": "b78c3eb5-e4ac-484c-87e3-19796d05fc75",
-      "title": "Задачи",
-      "submenu": false
-    },
-    {
-      "id": "d9631347-d416-4449-8a47-8451f0cc4b4e",
-      "title": "Покупки",
+      "id": "a35695f6-86f6-4b9f-9f21-ca893131be2e",
+      "title": "My Tasks",
       "submenu": false
     }
   ],
@@ -43,15 +33,21 @@
     },
     {
       "listID": "8681478c-eae4-4662-9432-bb7e61d8f7e1",
-      "id": "9bddd258-d4a6-4c9d-89e2-f3940eac59fe",
-      "text": "Завершить проект",
+      "id": "7c36501e-a878-4d81-8cbc-51c2e58de9bf",
+      "text": "asd",
       "completed": false
     },
     {
-      "listID": "8681478c-eae4-4662-9432-bb7e61d8f7e1",
-      "id": "4576eac0-54e9-49ac-876a-9d41b2749b65",
+      "listID": "c6b69aaa-8845-45e8-91b0-986f9cc24f51",
+      "id": "002a0c03-cd6b-4651-9661-bedd27554b0e",
       "text": "asd",
-      "completed": true
+      "completed": false
+    },
+    {
+      "listID": "a35695f6-86f6-4b9f-9f21-ca893131be2e",
+      "id": "ab808350-9fc2-40e2-8b00-ead8edd87650",
+      "text": "Завершить проект быстро",
+      "completed": false
     }
   ]
 }

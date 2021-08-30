@@ -44,7 +44,7 @@ const ListItem = ({text, id}) => {
                                        updateTask2(id, inputValue)
                                        setEnableEdit(!enableEdit)
                                    }}
-                                             className={classes.endIcon} fontSize="small"/>
+                                             className={classes.endIconToggle} fontSize="small"/>
                                </IconButton>}/>
                 )}
             </Paper>

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer} from 'react'
+import React, { useEffect, useReducer } from 'react'
 import tasksContext from './tasks-context'
 import tasksReducer from './tasks-reducer'
 import {
@@ -37,7 +37,7 @@ const TasksState = (props) => {
                 payloadTitle: initialListTitle
             })
         })
-    },[])
+    }, [])
     //Функция показать/скрыть меню списка
     const toggleListMenu = () => {
         dispatch({
@@ -53,43 +53,37 @@ const TasksState = (props) => {
         })
     }
     //Функция создания списка
-    const createList2 = () => {
-        const listTitle = window.prompt("Enter a name: ")
-        {listTitle ? (
-            axios.post('http://localhost:3001/lists', {
-                id: uuidv4(),
-                title: listTitle,
-                submenu: false
-            }).then((resp) => {
-                dispatch({
-                    type: CREATE_LIST,
-                    payload: resp.data
-                })
+    const createList2 = (createInputValue) => {
+        axios.post('http://localhost:3001/lists', {
+            id: uuidv4(),
+            title: createInputValue,
+            submenu: false
+        }).then((resp) => {
+            dispatch({
+                type: CREATE_LIST,
+                payload: resp.data
             })
-        ) : alert("Неправильное имя списка!")}
+        })
     }
     //Функция редактирования названия списка
-    const updateList2 = (id) => {
-        const listTitle = window.prompt("Enter a name: ")
-        {listTitle ? (
-            axios.put('http://localhost:3001/lists/' + id, {
-                id,
-                title: listTitle,
-                submenu: false
-            }).then((resp) => {
+    const updateList2 = (id, inputValue) => {
+        axios.put('http://localhost:3001/lists/' + id, {
+            id,
+            title: inputValue,
+            submenu: false
+        }).then((resp) => {
+            dispatch({
+                type: UPDATE_LIST,
+                payload: resp.data
+            })
+        }).then(() => {
+            axios.get('http://localhost:3001/lists').then((resp) => {
                 dispatch({
-                    type: UPDATE_LIST,
+                    type: GET_LISTS,
                     payload: resp.data
                 })
-            }).then(() => {
-                axios.get('http://localhost:3001/lists').then((resp) => {
-                    dispatch({
-                        type: GET_LISTS,
-                        payload: resp.data
-                    })
-                })
             })
-        ) : (alert("Невозможно создать пустой список!"))}
+        })
     }
     //Функция удаления списка из JSON
     const deleteList2 = (id) => {
@@ -110,7 +104,7 @@ const TasksState = (props) => {
     //Функция показать/скрыть submenu
     const toggleSubmenu = (id) => {
         state.lists.map((i) => {
-            if(id === i.id) {
+            if (id === i.id) {
                 return axios.put('http://localhost:3001/lists/' + id, {
                     id: i.id,
                     title: i.title,
@@ -139,10 +133,11 @@ const TasksState = (props) => {
                 payload: resp.data
             })
         })
-    },[])
+    }, [])
     //Функция добавления новой задачи
     const createTask2 = (inputValue, setInputValue) => {
-        {inputValue ? (
+        {
+            inputValue ? (
                 axios.post('http://localhost:3001/tasks', {
                     listID: state.listIdValue,
                     id: uuidv4(),
@@ -155,31 +150,32 @@ const TasksState = (props) => {
                     })
                 })
 
-        ) : (
-            alert("Невозможно создать пустой список!")
-        )}
+            ) : (
+                alert("Невозможно создать пустой список!")
+            )
+        }
         setInputValue('')
     }
     //Функция редактирования заметки
     const updateTask2 = (id, inputValue) => {
-            axios.put('http://localhost:3001/tasks/' + id, {
-                listID: state.listIdValue,
-                id,
-                text: inputValue,
-                completed: false
-            }).then((resp) => {
+        axios.put('http://localhost:3001/tasks/' + id, {
+            listID: state.listIdValue,
+            id,
+            text: inputValue,
+            completed: false
+        }).then((resp) => {
+            dispatch({
+                type: UPDATE_TASK,
+                payload: resp.data
+            })
+        }).then(() => {
+            axios.get('http://localhost:3001/tasks').then((resp) => {
                 dispatch({
-                    type: UPDATE_TASK,
+                    type: GET_TASKS,
                     payload: resp.data
                 })
-            }).then(() => {
-                axios.get('http://localhost:3001/tasks').then((resp) => {
-                    dispatch({
-                        type: GET_TASKS,
-                        payload: resp.data
-                    })
-                })
             })
+        })
     }
     //Функция удаления задачи
     const deleteTask2 = (id) => {
@@ -244,24 +240,24 @@ const TasksState = (props) => {
     }
 
     return (
-    <tasksContext.Provider value={{
-        lists: state.lists,
-        activeListTitle: state.activeListTitle,
-        toggleListMenu,
-        listIdValue: state.listIdValue,
-        selectList,
-        createList2,
-        updateList2,
-        deleteList2,
-        tasks: state.tasks,
-        createTask2,
-        updateTask2,
-        deleteTask2,
-        completeTask2,
-        toggleSubmenu
-    }}>
-        {props.children}
-    </tasksContext.Provider>
+        <tasksContext.Provider value={{
+            lists: state.lists,
+            activeListTitle: state.activeListTitle,
+            toggleListMenu,
+            listIdValue: state.listIdValue,
+            selectList,
+            createList2,
+            updateList2,
+            deleteList2,
+            tasks: state.tasks,
+            createTask2,
+            updateTask2,
+            deleteTask2,
+            completeTask2,
+            toggleSubmenu
+        }}>
+            {props.children}
+        </tasksContext.Provider>
     )
 }
 

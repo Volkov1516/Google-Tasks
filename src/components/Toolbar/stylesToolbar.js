@@ -19,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between",
         overflow: "visible"
     },
-    menuTitle: {
-        width: "200px"
-    },
     menuIcon: {
         width: "18px",
         height: "18px",
@@ -35,12 +32,27 @@ const useStyles = makeStyles((theme) => ({
         borderTop: "1px solid rgba(0,0,0,0.12)",
         zIndex: '1'
     },
-    submenuPaper: {
-        width: '100px',
-        position: "relative",
-        top: "50px",
-        right: "0px",
-        zIndex: '2'
+    inputPaper: {
+        margin: "10px",
+        padding: '6px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: "space-between",
+        borderRadius: "9px",
+        backgroundColor: "#dadce0"
+    },
+    inputBase: {
+    },
+    inputBtn: {
+        marginRight: "15px",
+        fontSize: "16px",
+        color: '#1A73E8',
+        backgroundColor: "transparent",
+        borderRadius: "9px",
+        '&:hover': {
+            color: 'white',
+            backgroundColor: "#1A73E8"
+        }
     }
 }))
 
