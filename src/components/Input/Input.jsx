@@ -26,7 +26,7 @@ const Input = () => {
                 multiline
                 autoFocus="ture"
                 endAdornment={<Button onClick={() => createTask2(inputValue, setInputValue)}
-                                      className={classes.inputBtn}>OK</Button>}
+                                      className={classes.inputBtn}>Save</Button>}
             />
         </Paper>
     )

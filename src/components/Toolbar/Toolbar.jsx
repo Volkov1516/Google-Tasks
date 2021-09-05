@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import tasksContext from "../../context/tasks-context";
 
-import { Button, MenuItem, IconButton, Container, Paper, InputBase } from '@material-ui/core';
+import { Button, MenuItem, IconButton, Container, Paper, InputBase, Typography } from '@material-ui/core';
 import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
 import useStyles from './stylesToolbar'
 import MainMenuItem from "./MenuItem/MenuItem";
+import AddIcon from '@material-ui/icons/Add';
 
 const Toolbar = () => {
     const classes = useStyles()
@@ -37,12 +38,13 @@ const Toolbar = () => {
                 className={classes.menuPaper}
                 elevation="8"
             >
-                {lists.map(i => <MainMenuItem text={i.title} id={i.id}/>)}
+                {lists.length ? lists.map(i => <MainMenuItem text={i.title} id={i.id}/>) : <Typography className={classes.emptyMarker}>List is empty...</Typography>}
 
                 {toggleCreateInput ? (
                     <MenuItem onClick={() => {
                         setToggleCreateInput(!toggleCreateInput)
-                    }} className={classes.menuCreateBtn}> Create new list </MenuItem>
+                    }} className={classes.menuCreateBtn}> 
+                    Create new list </MenuItem>
                 ) : (
                     <Paper className={classes.inputPaper}>
                         <InputBase
@@ -60,7 +62,7 @@ const Toolbar = () => {
                                         createList2(createInputValue)
                                         setCreateInputValue('')
                                       }}
-                                      >OK</Button>}
+                                      >Done</Button>}
                     />
                     </Paper>
                 ) }

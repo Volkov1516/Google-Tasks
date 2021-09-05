@@ -1,53 +1,11 @@
 {
   "lists": [
     {
-      "id": "a35695f6-86f6-4b9f-9f21-ca893131be2e",
-      "title": "My Tasks",
+      "id": "f244b406-1c31-415c-80b6-e1a1b081817f",
+      "title": "Tasks",
       "submenu": false
     }
   ],
   "tasks": [
-    {
-      "listID": 123,
-      "id": "382f4861-234a-4842-8c17-a374c13446d6",
-      "text": "Купить молоко",
-      "completed": true
-    },
-    {
-      "listID": 123,
-      "id": "55430119-3c93-4c36-8fc2-7118ca403cc2",
-      "text": "Почитать книгу вечером",
-      "completed": false
-    },
-    {
-      "listID": "d69cf950-4730-484d-a88e-e39b597ac501",
-      "id": "6163c139-25cc-4879-896d-8efeab9466e1",
-      "text": "Зарядка",
-      "completed": false
-    },
-    {
-      "listID": "d69cf950-4730-484d-a88e-e39b597ac501",
-      "id": "5e5e2e91-575c-41f4-b0b6-e88915c55a61",
-      "text": "asds",
-      "completed": true
-    },
-    {
-      "listID": "8681478c-eae4-4662-9432-bb7e61d8f7e1",
-      "id": "7c36501e-a878-4d81-8cbc-51c2e58de9bf",
-      "text": "asd",
-      "completed": false
-    },
-    {
-      "listID": "c6b69aaa-8845-45e8-91b0-986f9cc24f51",
-      "id": "002a0c03-cd6b-4651-9661-bedd27554b0e",
-      "text": "asd",
-      "completed": false
-    },
-    {
-      "listID": "a35695f6-86f6-4b9f-9f21-ca893131be2e",
-      "id": "ab808350-9fc2-40e2-8b00-ead8edd87650",
-      "text": "Завершить проект быстро",
-      "completed": false
-    }
   ]
 }

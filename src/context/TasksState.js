@@ -163,11 +163,6 @@ const TasksState = (props) => {
             id,
             text: inputValue,
             completed: false
-        }).then((resp) => {
-            dispatch({
-                type: UPDATE_TASK,
-                payload: resp.data
-            })
         }).then(() => {
             axios.get('http://localhost:3001/tasks').then((resp) => {
                 dispatch({

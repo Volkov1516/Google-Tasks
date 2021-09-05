@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     inputItem: {
-        color: "black"
+        color: "black",
+        cursor: "default"
     },
     endIcon: {
         width: "18px",

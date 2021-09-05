@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
             color: 'white',
             backgroundColor: "#1A73E8"
         }
+    },
+    emptyMarker: {
+        color: 'gray',
+        padding: '10px'
     }
 }))
 
