@@ -1,18 +1,13 @@
 import React, {useState, useContext} from "react";
-import tasksContext from "../../context/tasks-context";
+import context from "../../context/context";
 
-import {
-    Button,
-    Paper,
-    InputBase
-} from "@material-ui/core";
 import useStyles from "./stylesInput"
+import {Button, Paper, InputBase} from "@material-ui/core";
 
 const Input = () => {
     const classes = useStyles()
 
-    const {createTask2} = useContext(tasksContext)
-
+    const {createTask} = useContext(context)
     const [inputValue, setInputValue] = useState('')
 
     return (
@@ -25,7 +20,7 @@ const Input = () => {
                 fullWidth
                 multiline
                 autoFocus="ture"
-                endAdornment={<Button onClick={() => createTask2(inputValue, setInputValue)}
+                endAdornment={<Button onClick={() => createTask(inputValue, setInputValue)}
                                       className={classes.inputBtn}>Save</Button>}
             />
         </Paper>

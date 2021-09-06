@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import tasksContext from "../../../context/tasks-context";
+import context from "../../../context/context";
 
 import useStyles from "./stylesMenuItem"
 import { IconButton, InputBase, Paper } from "@material-ui/core";
@@ -11,7 +11,7 @@ const MainMenuItem = ({ text, id }) => {
 
     const classes = useStyles()
 
-    const { selectList, updateList2, deleteList2 } = useContext(tasksContext)
+    const { selectList, updateList, deleteList } = useContext(context)
 
     const [enableEdit, setEnableEdit] = useState(false)
     const [inputValue, setInputValue] = useState(text)
@@ -33,21 +33,31 @@ const MainMenuItem = ({ text, id }) => {
                                         fontSize="small" />
                                 </IconButton>
                                 <IconButton>
-                                    <DeleteRoundedIcon onClick={() => deleteList2(id)} className={classes.endIcon}
+                                    <DeleteRoundedIcon onClick={() => deleteList(id)} className={classes.endIcon}
                                         fontSize="small" />
                                 </IconButton>
                             </>
                         }
                     />
                 ) : (
-                    <InputBase value={inputValue} fullWidth multiline onChange={e => setInputValue(e.target.value)}
-                        endAdornment={<IconButton>
-                            <DoneIcon onClick={() => {
-                                updateList2(id, inputValue)
-                                setEnableEdit(!enableEdit)
-                            }}
-                                className={classes.endIconToggle} fontSize="small" />
-                        </IconButton>} />
+                    <InputBase
+                        value={inputValue}
+                        onChange={e => setInputValue(e.target.value)}
+                        fullWidth
+                        multiline
+                        endAdornment={
+                            <IconButton>
+                                <DoneIcon
+                                    onClick={() => {
+                                        updateList(id, inputValue)
+                                        setEnableEdit(!enableEdit)
+                                    }}
+                                    className={classes.endIconToggle}
+                                    fontSize="small"
+                                />
+                            </IconButton>
+                        }
+                    />
                 )}
             </Paper>
         </>

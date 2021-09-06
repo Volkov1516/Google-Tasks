@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#1A73E8',
         backgroundColor: "transparent",
         borderRadius: "9px",
+        textTransform: "unset !important",
         '&:hover': {
             color: 'white',
             backgroundColor: "#1A73E8"

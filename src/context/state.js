@@ -1,15 +1,14 @@
 import React, { useEffect, useReducer } from 'react'
-import tasksContext from './tasks-context'
-import tasksReducer from './tasks-reducer'
-import {
-    GET_LISTS, SET_INITIAL_LIST, TOGGLE_LIST_MENU, SELECT_LIST, CREATE_LIST, UPDATE_LIST, DELETE_LIST, TOGGLE_SUBMENU,
-    GET_TASKS, CREATE_TASK, UPDATE_TASK, DELETE_TASK, COMPLETE_TASK
-} from './tasks-actions'
-
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
+import context from './context'
+import reducer from './reducer'
+import {
+    GET_LISTS, SET_INITIAL_LIST, CREATE_LIST, DELETE_LIST, SELECT_LIST,
+    GET_TASKS, CREATE_TASK, DELETE_TASK, COMPLETE_TASK
+} from './actions'
 
-const TasksState = (props) => {
+const State = (props) => {
 
     const initialState = {
         lists: [],
@@ -17,12 +16,9 @@ const TasksState = (props) => {
         listIdValue: 1,
         activeListTitle: ''
     }
+    const [state, dispatch] = useReducer(reducer, initialState)
 
-    const [state, dispatch] = useReducer(tasksReducer, initialState)
-
-    //Функция получения lists из JSON.
-    //Рендер первого списка из массива по умолчанию при обновлении
-    //Также рендер этого же title для заголовка
+//List functions (CRUD + select list)
     useEffect(() => {
         axios.get('http://localhost:3001/lists').then((resp) => {
             dispatch({
@@ -38,22 +34,8 @@ const TasksState = (props) => {
             })
         })
     }, [])
-    //Функция показать/скрыть меню списка
-    const toggleListMenu = () => {
-        dispatch({
-            type: TOGGLE_LIST_MENU
-        })
-    }
-    //Функция выбора списка
-    const selectList = (id, title) => {
-        dispatch({
-            type: SELECT_LIST,
-            payloadId: id,
-            payloadTitle: title
-        })
-    }
-    //Функция создания списка
-    const createList2 = (createInputValue) => {
+
+    const createList = (createInputValue) => {
         axios.post('http://localhost:3001/lists', {
             id: uuidv4(),
             title: createInputValue,
@@ -65,17 +47,12 @@ const TasksState = (props) => {
             })
         })
     }
-    //Функция редактирования названия списка
-    const updateList2 = (id, inputValue) => {
+
+    const updateList = (id, inputValue) => {
         axios.put('http://localhost:3001/lists/' + id, {
             id,
             title: inputValue,
             submenu: false
-        }).then((resp) => {
-            dispatch({
-                type: UPDATE_LIST,
-                payload: resp.data
-            })
         }).then(() => {
             axios.get('http://localhost:3001/lists').then((resp) => {
                 dispatch({
@@ -85,8 +62,26 @@ const TasksState = (props) => {
             })
         })
     }
-    //Функция удаления списка из JSON
-    const deleteList2 = (id) => {
+
+    const deleteList = (id) => {
+        state.tasks.map(i => {
+            if (i.listID === id) {
+                axios.delete('http://localhost:3001/tasks/' + i.id).then((resp) => {
+                    dispatch({
+                        type: DELETE_TASK,
+                        payload: resp.data
+                    })
+                }).then(() => {
+                    axios.get('http://localhost:3001/tasks').then((resp) => {
+                        dispatch({
+                            type: GET_TASKS,
+                            payload: resp.data
+                        })
+                    })
+                })
+            }
+        })
+
         axios.delete('http://localhost:3001/lists/' + id).then((resp) => {
             dispatch({
                 type: DELETE_LIST,
@@ -101,31 +96,17 @@ const TasksState = (props) => {
             })
         })
     }
-    //Функция показать/скрыть submenu
-    const toggleSubmenu = (id) => {
-        state.lists.map((i) => {
-            if (id === i.id) {
-                return axios.put('http://localhost:3001/lists/' + id, {
-                    id: i.id,
-                    title: i.title,
-                    submenu: !i.submenu
-                }).then((resp) => {
-                    dispatch({
-                        type: TOGGLE_SUBMENU,
-                        payload: resp.data
-                    })
-                }).then(() => {
-                    axios.get('http://localhost:3001/lists').then((resp) => {
-                        dispatch({
-                            type: GET_LISTS,
-                            payload: resp.data
-                        })
-                    })
-                })
-            }
+
+    const selectList = (id, title) => {
+        dispatch({
+            type: SELECT_LIST,
+            payloadId: id,
+            payloadTitle: title
         })
     }
-    //Функция получения tasks из JSON
+
+
+//Task functions ( CRUD + complete task )
     useEffect(() => {
         axios.get('http://localhost:3001/tasks').then((resp) => {
             dispatch({
@@ -134,30 +115,23 @@ const TasksState = (props) => {
             })
         })
     }, [])
-    //Функция добавления новой задачи
-    const createTask2 = (inputValue, setInputValue) => {
-        {
-            inputValue ? (
-                axios.post('http://localhost:3001/tasks', {
-                    listID: state.listIdValue,
-                    id: uuidv4(),
-                    text: inputValue,
-                    completed: false
-                }).then((resp) => {
-                    dispatch({
-                        type: CREATE_TASK,
-                        payload: resp.data
-                    })
-                })
-
-            ) : (
-                alert("Невозможно создать пустой список!")
-            )
-        }
+    
+    const createTask = (inputValue, setInputValue) => {
+        axios.post('http://localhost:3001/tasks', {
+            listID: state.listIdValue,
+            id: uuidv4(),
+            text: inputValue,
+            completed: false
+        }).then((resp) => {
+            dispatch({
+                type: CREATE_TASK,
+                payload: resp.data
+            })
+        })
         setInputValue('')
     }
-    //Функция редактирования заметки
-    const updateTask2 = (id, inputValue) => {
+    
+    const updateTask = (id, inputValue) => {
         axios.put('http://localhost:3001/tasks/' + id, {
             listID: state.listIdValue,
             id,
@@ -172,8 +146,8 @@ const TasksState = (props) => {
             })
         })
     }
-    //Функция удаления задачи
-    const deleteTask2 = (id) => {
+    
+    const deleteTask = (id) => {
         axios.delete('http://localhost:3001/tasks/' + id).then((resp) => {
             dispatch({
                 type: DELETE_TASK,
@@ -188,8 +162,8 @@ const TasksState = (props) => {
             })
         })
     }
-    //Функция завершения задачи, а также ее восстановление
-    const completeTask2 = (id) => {
+    
+    const completeTask = (id) => {
         state.tasks.map((i) => {
             if (i.id === id && i.completed === false) {
                 return axios.put('http://localhost:3001/tasks/' + id, {
@@ -235,25 +209,23 @@ const TasksState = (props) => {
     }
 
     return (
-        <tasksContext.Provider value={{
+        <context.Provider value={{
             lists: state.lists,
             activeListTitle: state.activeListTitle,
-            toggleListMenu,
             listIdValue: state.listIdValue,
+            createList,
+            updateList,
+            deleteList,
             selectList,
-            createList2,
-            updateList2,
-            deleteList2,
             tasks: state.tasks,
-            createTask2,
-            updateTask2,
-            deleteTask2,
-            completeTask2,
-            toggleSubmenu
+            createTask,
+            updateTask,
+            deleteTask,
+            completeTask
         }}>
             {props.children}
-        </tasksContext.Provider>
+        </context.Provider>
     )
 }
 
-export default TasksState
+export default State

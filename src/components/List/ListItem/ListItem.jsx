@@ -1,19 +1,16 @@
-import React, {useState, useContext} from "react";
-import tasksContext from "../../../context/tasks-context";
+import React, { useState, useContext } from "react";
+import context from "../../../context/context";
 
 import useStyles from "./stylesListItem"
-import {IconButton, InputBase, Paper} from "@material-ui/core";
-import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import { IconButton, InputBase, Paper } from "@material-ui/core";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import DoneIcon from '@material-ui/icons/Done';
 
-const ListItem = ({text, id}) => {
-
+const ListItem = ({ text, id }) => {
     const classes = useStyles()
 
-    const {updateTask2, deleteTask2, completeTask2} = useContext(tasksContext)
-
+    const { updateTask, deleteTask, completeTask } = useContext(context)
     const [enableEdit, setEnableEdit] = useState(false)
     const [inputValue, setInputValue] = useState(text)
 
@@ -27,25 +24,35 @@ const ListItem = ({text, id}) => {
                         value={text}
                         fullWidth
                         multiline
-                        startAdornment={<IconButton>
-                            <RadioButtonUncheckedIcon onClick={() => completeTask2(id)} fontSize="small"/>
-                        </IconButton>}
+                        startAdornment={
+                            <IconButton>
+                                <RadioButtonUncheckedIcon onClick={() => completeTask(id)} fontSize="small" />
+                            </IconButton>
+                        }
                         endAdornment={
                             <IconButton>
-                                <DeleteRoundedIcon onClick={() => deleteTask2(id)} className={classes.endIcon}
-                                                   fontSize="small"/>
+                                <DeleteRoundedIcon onClick={() => deleteTask(id)} className={classes.endIcon} fontSize="small" />
                             </IconButton>
                         }
                     />
                 ) : (
-                    <InputBase value={inputValue} fullWidth multiline onChange={e => setInputValue(e.target.value)}
-                               startAdornment={<IconButton>
-                                   <DoneIcon onClick={() => {
-                                       updateTask2(id, inputValue)
-                                       setEnableEdit(!enableEdit)
-                                   }}
-                                             className={classes.endIconToggle} fontSize="small"/>
-                               </IconButton>}/>
+                    <InputBase
+                        value={inputValue}
+                        onChange={e => setInputValue(e.target.value)}
+                        fullWidth
+                        multiline
+                        startAdornment={
+                            <IconButton>
+                                <DoneIcon onClick={() => {
+                                    updateTask(id, inputValue)
+                                    setEnableEdit(!enableEdit)
+                                    }}
+                                    className={classes.endIconToggle}
+                                    fontSize="small"
+                                />
+                            </IconButton>
+                        }
+                    />
                 )}
             </Paper>
         </>

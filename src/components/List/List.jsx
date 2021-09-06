@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import tasksContext from "../../context/tasks-context";
+import context from "../../context/context";
+
+import useStyles from "./stylesList";
+import { Button } from "@material-ui/core";
 
 import ListItem from "./ListItem/ListItem";
 import CompletedItem from "./CompletedItem/CompletedItem";
-import useStyles from "./stylesList";
-import { Button } from "@material-ui/core";
 
 const List = () => {
     const classes = useStyles()
 
-    const { tasks, listIdValue } = useContext(tasksContext)
-
+    const { tasks, listIdValue } = useContext(context)
     const [isActive, setIsActive] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
 
@@ -25,6 +25,7 @@ const List = () => {
                     }
                 })}
             </div>
+            
             <Button
                 onClick={() => {
                     setIsVisible(!isVisible)
@@ -32,9 +33,8 @@ const List = () => {
                 }}
                 style={isActive ? ({ backgroundColor: "#dadce0" }) : null}
                 className={classes.toggleBtn}
-            >
-                Completed
-            </Button>
+            >Completed</Button>
+
             <div style={isVisible ? ({ display: 'block' }) : ({ display: 'none' })}>
                 {tasks.map((i) => {
                     if (i.listID === listIdValue && i.completed) {
