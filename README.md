@@ -1,15 +1,15 @@
 # TASKS
 
-##Description
+## Description
 A simple tasks application.
 
-##Features: 
+## Features: 
 - React Hooks
 - Global state with useReduser + useContext
 - HTTP requests with axios
 - Material UI
 
-##Installing
-- Clone the repository
-- Run JSON server
+## Installing
+- Copy the repository
+- Run the JSON server
 - Run the project
