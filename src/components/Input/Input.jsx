@@ -1,12 +1,10 @@
 import React, {useState, useContext} from "react";
 import context from "../../context/context";
-
 import useStyles from "./stylesInput"
 import {Button, Paper, InputBase} from "@material-ui/core";
 
 const Input = () => {
     const classes = useStyles()
-
     const {createTask} = useContext(context)
     const [inputValue, setInputValue] = useState('')
 

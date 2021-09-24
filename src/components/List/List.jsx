@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import context from "../../context/context";
-
 import useStyles from "./stylesList";
 import { Button } from "@material-ui/core";
-
 import ListItem from "./ListItem/ListItem";
 import CompletedItem from "./CompletedItem/CompletedItem";
 
 const List = () => {
     const classes = useStyles()
-
     const { tasks, listIdValue } = useContext(context)
     const [isActive, setIsActive] = useState(false)
     const [isVisible, setIsVisible] = useState(false)

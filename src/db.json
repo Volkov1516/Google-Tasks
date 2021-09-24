@@ -12,6 +12,12 @@
       "id": "76681bb7-78ba-4887-8edf-bb19878755ff",
       "text": "Create the first task",
       "completed": false
+    },
+    {
+      "listID": "3ff52d26-0fd2-42c6-8ab5-f1408b8c629f",
+      "id": "3c52b4a1-3f03-4d38-922b-8450e4dabff7",
+      "text": "The first task again...",
+      "completed": true
     }
   ]
 }

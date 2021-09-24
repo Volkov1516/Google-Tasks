@@ -8,11 +8,8 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import DoneIcon from '@material-ui/icons/Done';
 
 const MainMenuItem = ({ text, id }) => {
-
     const classes = useStyles()
-
     const { selectList, updateList, deleteList } = useContext(context)
-
     const [enableEdit, setEnableEdit] = useState(false)
     const [inputValue, setInputValue] = useState(text)
 

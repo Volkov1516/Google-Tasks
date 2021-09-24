@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import context from "../../../context/context";
-
 import useStyles from "./stylesListItem"
 import { IconButton, InputBase, Paper } from "@material-ui/core";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
@@ -9,7 +8,6 @@ import DoneIcon from '@material-ui/icons/Done';
 
 const ListItem = ({ text, id }) => {
     const classes = useStyles()
-
     const { updateTask, deleteTask, completeTask } = useContext(context)
     const [enableEdit, setEnableEdit] = useState(false)
     const [inputValue, setInputValue] = useState(text)

@@ -8,7 +8,6 @@ import MainMenuItem from "./MenuItem/MenuItem";
 
 const Toolbar = () => {
     const classes = useStyles()
-
     const { lists, activeListTitle, createList } = useContext(context)
     const [isActive, setIsActive] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +25,9 @@ const Toolbar = () => {
                 className={classes.menuBtn}
                 size="large"
                 endIcon={<ArrowDropDownRoundedIcon />}
-            >{activeListTitle}</Button>
+            >
+                {activeListTitle}
+            </Button>
 
             <Paper
                 style={isVisible ? ({ display: 'block' }) : ({ display: 'none' })}
