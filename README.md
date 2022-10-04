@@ -1,15 +1,25 @@
 # TASKS
 
 ## Description
-A simple tasks application.
+A copy of the Google Tasks application.
 
-## Features: 
-- React Hooks
-- Global state with useReduser + useContext
-- HTTP requests with axios
+## Features
+- Create, update and delete lists of tasks
+- Create, update and delete tasks
+- Completed tasks list
+
+## Technologies:
+- HTML/CSS
+- JavaScript
+- React (hooks)
+- Global state with useContext + useReduser
 - Material UI
+- axios
+- uuid
+- json-server
 
 ## Installing
 - Copy the repository
-- Run the JSON server
-- Run the project
+- Install dependencies `npm install`
+- Run the JSON server `json-server --watch ./src/db.json --port 3001`
+- Run the project `npm start`
